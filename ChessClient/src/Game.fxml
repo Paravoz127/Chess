@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="880.0" prefWidth="880.0" stylesheets="@MyStyle.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="40.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/b_castle.png" />
+         </image></ImageView>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="140.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/b_hourse.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="240.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/b_elephant.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="340.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/b_queen.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="440.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/b_king.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="540.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/b_elephant.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="640.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/b_hourse.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="740.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/b_castle.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="40.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/b_pawn.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="140.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/b_pawn.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="240.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/b_pawn.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="340.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/b_pawn.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="440.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/b_pawn.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="540.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/b_pawn.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="640.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/b_pawn.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="740.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/b_pawn.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="40.0" layoutY="640.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/w_pawn.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="140.0" layoutY="640.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/w_pawn.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="240.0" layoutY="640.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/w_pawn.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="340.0" layoutY="640.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/w_pawn.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="440.0" layoutY="640.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/w_pawn.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="540.0" layoutY="640.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/w_pawn.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="640.0" layoutY="640.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/w_pawn.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="740.0" layoutY="640.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/w_pawn.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="40.0" layoutY="740.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/w_castle.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="140.0" layoutY="740.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/w_hourse.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="240.0" layoutY="740.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/w_elephant.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="340.0" layoutY="740.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/w_queen.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="440.0" layoutY="740.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/w_king.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="540.0" layoutY="740.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/w_elephant.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="640.0" layoutY="740.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/w_hourse.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="740.0" layoutY="740.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/w_castle.png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>
