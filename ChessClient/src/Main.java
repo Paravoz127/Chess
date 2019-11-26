@@ -8,7 +8,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("game.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("kpfu/itis/group11_801/kilin/chess/views/Game.fxml"));
         primaryStage.setTitle("Chess");
         primaryStage.setScene(new Scene(root, 880, 880));
         primaryStage.setResizable(false);
