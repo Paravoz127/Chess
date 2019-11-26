@@ -1,3 +1,5 @@
+package kpfu.itis.group11_801.kilin.chess;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
