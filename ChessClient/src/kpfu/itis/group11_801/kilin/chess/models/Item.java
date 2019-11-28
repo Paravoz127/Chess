@@ -26,23 +26,24 @@ abstract class Item {
         this.imageView = imageView;
         this.team = team;
 
-        if (Game.getCurrentGame().getCurrentTeam() == )
-        imageView.setOnMousePressed(event -> {
-            boardX = posToInt(posX);
-            boardY = posToInt(posY);
-        });
-        imageView.setOnMouseDragged(event -> {
-            if (event.getButton().equals(MouseButton.PRIMARY)) {
-                if (event.getX() >= OFFSET + SIZE / 2 && event.getX() <= 7.5 * SIZE + OFFSET &&
-                    event.getY() >= OFFSET + SIZE / 2 && event.getY() <= 7.5 * SIZE + OFFSET ){
-                    posX.set(event.getX() - SIZE / 2);
-                    posY.set(event.getY() - SIZE / 2);
+        if (Game.getCurrentGame().getCurrentTeam() == team) {
+            imageView.setOnMousePressed(event -> {
+                boardX = posToInt(posX);
+                boardY = posToInt(posY);
+            });
+            imageView.setOnMouseDragged(event -> {
+                if (event.getButton().equals(MouseButton.PRIMARY)) {
+                    if (event.getX() >= OFFSET + SIZE / 2 && event.getX() <= 7.5 * SIZE + OFFSET &&
+                            event.getY() >= OFFSET + SIZE / 2 && event.getY() <= 7.5 * SIZE + OFFSET) {
+                        posX.set(event.getX() - SIZE / 2);
+                        posY.set(event.getY() - SIZE / 2);
+                    }
                 }
-            }
-        });
-        imageView.setOnMouseReleased(event -> {
-            move(posToInt(posX), posToInt(posY));
-        });
+            });
+            imageView.setOnMouseReleased(event -> {
+                move(posToInt(posX), posToInt(posY));
+            });
+        }
     }
 
     public boolean move(int x, int y) {
