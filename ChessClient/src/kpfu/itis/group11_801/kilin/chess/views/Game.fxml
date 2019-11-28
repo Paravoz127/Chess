@@ -6,161 +6,161 @@
 
 <Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="880.0" prefWidth="880.0" stylesheets="@MyStyle.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kpfu.itis.group11_801.kilin.chess.controllers.GameController">
    <children>
-      <ImageView fitHeight="100.0" fitWidth="100.0" x="40.0" y="40.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="40.0" y="40.0">
          <image>
             <Image url="@../resources/b_castle.png" />
          </image></ImageView>
-      <ImageView fitHeight="100.0" fitWidth="100.0" x="140.0" y="40.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="140.0" y="40.0">
          <image>
             <Image url="@../resources/b_hourse.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="100.0" x="240.0" y="40.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="240.0" y="40.0">
          <image>
             <Image url="@../resources/b_elephant.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="100.0" x="340.0" y="40.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="340.0" y="40.0">
          <image>
             <Image url="@../resources/b_queen.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="100.0" x="440.0" y="40.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="440.0" y="40.0">
          <image>
             <Image url="@../resources/b_king.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="100.0" x="540.0" y="40.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="540.0" y="40.0">
          <image>
             <Image url="@../resources/b_elephant.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="100.0" x="640.0" y="40.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="640.0" y="40.0">
          <image>
             <Image url="@../resources/b_hourse.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="100.0" x="740.0" y="40.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="740.0" y="40.0">
          <image>
             <Image url="@../resources/b_castle.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="100.0" x="40.0" y="140.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="b_pawn1" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="40.0" y="140.0">
          <image>
             <Image url="@../resources/b_pawn.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="100.0" x="140.0" y="140.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="b_pawn2" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="140.0" y="140.0">
          <image>
             <Image url="@../resources/b_pawn.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="100.0" x="240.0" y="140.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="b_pawn3" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="240.0" y="140.0">
          <image>
             <Image url="@../resources/b_pawn.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="100.0" x="340.0" y="140.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="b_pawn4" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="340.0" y="140.0">
          <image>
             <Image url="@../resources/b_pawn.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="100.0" x="440.0" y="140.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="b_pawn5" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="440.0" y="140.0">
          <image>
             <Image url="@../resources/b_pawn.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="100.0" x="540.0" y="140.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="b_pawn6" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="540.0" y="140.0">
          <image>
             <Image url="@../resources/b_pawn.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="100.0" x="640.0" y="140.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="b_pawn7" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="640.0" y="140.0">
          <image>
             <Image url="@../resources/b_pawn.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="100.0" x="740.0" y="140.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="b_pawn8" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="740.0" y="140.0">
          <image>
             <Image url="@../resources/b_pawn.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="40.0" y="640.0">
+      <ImageView fx:id="w_pawn1" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="40.0" y="640.0">
          <image>
             <Image url="@../resources/w_pawn.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="pawn1" fitHeight="100.0" fitWidth="100.0" x="140.0" y="640.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="w_pawn2" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="140.0" y="640.0">
          <image>
             <Image url="@../resources/w_pawn.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="100.0" x="240.0" y="640.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="w_pawn3" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="240.0" y="640.0">
          <image>
             <Image url="@../resources/w_pawn.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="100.0" x="340.0" y="640.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="w_pawn4" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="340.0" y="640.0">
          <image>
             <Image url="@../resources/w_pawn.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="100.0" x="440.0" y="640.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="w_pawn5" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="440.0" y="640.0">
          <image>
             <Image url="@../resources/w_pawn.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="100.0" x="540.0" y="640.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="w_pawn6" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="540.0" y="640.0">
          <image>
             <Image url="@../resources/w_pawn.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="100.0" x="640.0" y="640.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="w_pawn7" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="640.0" y="640.0">
          <image>
             <Image url="@../resources/w_pawn.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="100.0" x="740.0" y="640.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="w_pawn8" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="740.0" y="640.0">
          <image>
             <Image url="@../resources/w_pawn.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="100.0" x="40.0" y="740.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="40.0" y="740.0">
          <image>
             <Image url="@../resources/w_castle.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="100.0" x="140.0" y="740.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="140.0" y="740.0">
          <image>
             <Image url="@../resources/w_hourse.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="100.0" x="240.0" y="740.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="240.0" y="740.0">
          <image>
             <Image url="@../resources/w_elephant.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="100.0" x="340.0" y="740.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="340.0" y="740.0">
          <image>
             <Image url="@../resources/w_queen.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="100.0" x="440.0" y="740.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="440.0" y="740.0">
          <image>
             <Image url="@../resources/w_king.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="100.0" x="540.0" y="740.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="540.0" y="740.0">
          <image>
             <Image url="@../resources/w_elephant.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="100.0" x="640.0" y="740.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="640.0" y="740.0">
          <image>
             <Image url="@../resources/w_hourse.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="100.0" x="740.0" y="740.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="740.0" y="740.0">
          <image>
             <Image url="@../resources/w_castle.png" />
          </image>
