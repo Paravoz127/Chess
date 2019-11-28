@@ -33,8 +33,8 @@ abstract class Item {
             });
             imageView.setOnMouseDragged(event -> {
                 if (event.getButton().equals(MouseButton.PRIMARY)) {
-                    if (event.getX() >= OFFSET + SIZE / 2 && event.getX() <= 7.5 * SIZE + OFFSET &&
-                            event.getY() >= OFFSET + SIZE / 2 && event.getY() <= 7.5 * SIZE + OFFSET) {
+                    if (event.getX() >= OFFSET && event.getX() <= 8 * SIZE &&
+                            event.getY() >= OFFSET && event.getY() <= 8 * SIZE) {
                         posX.set(event.getX() - SIZE / 2);
                         posY.set(event.getY() - SIZE / 2);
                     }
@@ -46,19 +46,26 @@ abstract class Item {
         }
     }
 
+    public void destroy() {
+        imageView.setVisible(false);
+    }
+
     public boolean move(int x, int y) {
         if(canMove(x, y)) {
             posX.set(intToPos(x));
             posY.set(intToPos(y));
+            Game.getCurrentGame().deleteElem(x, y);
+            Game.getCurrentGame().moveItem(boardX, boardY, x, y);
             return true;
         } else {
             posX.set(intToPos(boardX));
             posY.set(intToPos(boardY));
             return false;
         }
+
     }
 
-    abstract boolean canMove(int x, int y);
+    public abstract boolean canMove(int x, int y);
 
     public int getX() {
         return posToInt(posX);
