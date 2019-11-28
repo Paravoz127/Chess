@@ -5,8 +5,8 @@ import javafx.scene.image.ImageView;
 public class Pawn extends Item {
     private boolean moved = false;
 
-    public Pawn(ImageView imageView) {
-        super(imageView);
+    public Pawn(ImageView imageView, Team team) {
+        super(imageView, team);
     }
 
     @Override
@@ -19,14 +19,25 @@ public class Pawn extends Item {
     }
 
     @Override
-    boolean canMove(int x, int y) {
-        if (boardX - x != 0) return false;
-        if (!moved) {
-            if (boardY - y == 2 || boardY - y == 1) {
+    public boolean canMove(int x, int y) {
+        int factor = 1;
+        if (team == Team.BLACK) {
+            factor = -1;
+        }
+
+        if (Math.abs(boardX - x) == 1 && boardY - y == factor && Game.getCurrentGame().hasItem(x, y) &&
+                Game.getCurrentGame().getItem(x, y).team != team) {
+            return true;
+        }
+        else if (boardX - x != 0) {
+            return false;
+        }
+        if (boardY - y == factor && !(Game.getCurrentGame().hasItem(x, y))) {
+            return true;
+        } else if (!moved) {
+            if (boardY - y == factor * 2 && !(Game.getCurrentGame().hasItem(x, y))) {
                 return true;
             }
-        } else if (boardY - y == 1) {
-            return true;
         }
         return false;
     }
