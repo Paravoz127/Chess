@@ -24,6 +24,8 @@ public class GameController {
     @FXML private ImageView w_pawn8;
     @FXML private ImageView w_castle1;
     @FXML private ImageView w_castle2;
+    @FXML private ImageView w_elephant1;
+    @FXML private ImageView w_elephant2;
 
     @FXML private ImageView b_pawn1;
     @FXML private ImageView b_pawn2;
@@ -35,6 +37,8 @@ public class GameController {
     @FXML private ImageView b_pawn8;
     @FXML private ImageView b_castle1;
     @FXML private ImageView b_castle2;
+    @FXML private ImageView b_elephant1;
+    @FXML private ImageView b_elephant2;
 
 
 
@@ -57,6 +61,8 @@ public class GameController {
         images.put("w_pawn8", w_pawn8);
         images.put("w_castle1", w_castle1);
         images.put("w_castle2", w_castle2);
+        images.put("w_elephant1", w_elephant1);
+        images.put("w_elephant2", w_elephant2);
 
         images.put("b_pawn1", b_pawn1);
         images.put("b_pawn2", b_pawn2);
@@ -68,6 +74,8 @@ public class GameController {
         images.put("b_pawn8", b_pawn8);
         images.put("b_castle1", b_castle1);
         images.put("b_castle2", b_castle2);
+        images.put("b_elephant1", b_elephant1);
+        images.put("b_elephant2", b_elephant2);
 
         new Game(Team.WHITE, images);
     }

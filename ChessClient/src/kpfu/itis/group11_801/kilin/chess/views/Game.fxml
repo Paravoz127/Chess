@@ -15,7 +15,7 @@
             <Image url="@../resources/b_hourse.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="240.0" y="40.0">
+      <ImageView fx:id="b_elephant1" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="240.0" y="40.0">
          <image>
             <Image url="@../resources/b_elephant.png" />
          </image>
@@ -30,7 +30,7 @@
             <Image url="@../resources/b_king.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="540.0" y="40.0">
+      <ImageView fx:id="b_elephant2" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="540.0" y="40.0">
          <image>
             <Image url="@../resources/b_elephant.png" />
          </image>
@@ -135,7 +135,7 @@
             <Image url="@../resources/w_hourse.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="240.0" y="740.0">
+      <ImageView fx:id="w_elephant1" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="240.0" y="740.0">
          <image>
             <Image url="@../resources/w_elephant.png" />
          </image>
@@ -150,7 +150,7 @@
             <Image url="@../resources/w_king.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="540.0" y="740.0">
+      <ImageView fx:id="w_elephant2" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="540.0" y="740.0">
          <image>
             <Image url="@../resources/w_elephant.png" />
          </image>

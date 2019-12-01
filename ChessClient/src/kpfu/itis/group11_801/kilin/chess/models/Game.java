@@ -26,6 +26,11 @@ public class Game {
         new Castle(images.get("b_castle1"), Team.BLACK);
         new Castle(images.get("b_castle2"), Team.BLACK);
 
+        new Elephant(images.get("w_elephant1"), Team.WHITE);
+        new Elephant(images.get("w_elephant2"), Team.WHITE);
+        new Elephant(images.get("b_elephant1"), Team.BLACK);
+        new Elephant(images.get("b_elephant2"), Team.BLACK);
+
     }
 
     public void createItem(int x, int y, Item item) {
