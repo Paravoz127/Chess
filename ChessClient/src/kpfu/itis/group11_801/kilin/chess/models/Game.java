@@ -31,6 +31,10 @@ public class Game {
         new Elephant(images.get("b_elephant1"), Team.BLACK);
         new Elephant(images.get("b_elephant2"), Team.BLACK);
 
+
+        new Queen(images.get("w_queen"), Team.WHITE);
+        new Queen(images.get("b_queen"), Team.BLACK);
+
     }
 
     public void createItem(int x, int y, Item item) {
