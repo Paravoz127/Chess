@@ -51,13 +51,30 @@ abstract class Item {
         imageView.setVisible(false);
     }
 
+    public void restore() {
+        imageView.setVisible(true);
+    }
+
     public boolean move(int x, int y) {
         if(canMove(x, y)) {
+            Item item = Game.getCurrentGame().getItem(x, y);
             posX.set(intToPos(x));
             posY.set(intToPos(y));
             Game.getCurrentGame().deleteElem(x, y);
             Game.getCurrentGame().moveItem(boardX, boardY, x, y);
-            return true;
+
+            if (Game.getCurrentGame().isShah(team)) {
+                posX.set(intToPos(boardX));
+                posY.set(intToPos(boardY));
+                Game.getCurrentGame().moveItem(x, y, boardX, boardY);
+                if (item != null) {
+                    Game.getCurrentGame().restoreElem(x, y, item);
+                }
+                return false;
+            } else {
+                return true;
+            }
+
         } else {
             posX.set(intToPos(boardX));
             posY.set(intToPos(boardY));
@@ -89,8 +106,8 @@ abstract class Item {
         return (int)Math.round((arg.get() - OFFSET) / SIZE);
     }
 
-    protected static double intToPos(int x) {
-        return x * SIZE + OFFSET;
+    protected static double intToPos(int arg) {
+        return arg * SIZE + OFFSET;
     }
 
 

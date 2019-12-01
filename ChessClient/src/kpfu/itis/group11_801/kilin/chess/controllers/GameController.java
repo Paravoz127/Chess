@@ -29,6 +29,7 @@ public class GameController {
     @FXML private ImageView w_queen;
     @FXML private ImageView w_horse1;
     @FXML private ImageView w_horse2;
+    @FXML private ImageView w_king;
 
     @FXML private ImageView b_pawn1;
     @FXML private ImageView b_pawn2;
@@ -45,7 +46,7 @@ public class GameController {
     @FXML private ImageView b_queen;
     @FXML private ImageView b_horse1;
     @FXML private ImageView b_horse2;
-
+    @FXML private ImageView b_king;
 
 
 
@@ -73,6 +74,7 @@ public class GameController {
         images.put("w_horse1", w_horse1);
         images.put("w_horse2", w_horse2);
         images.put("w_queen", w_queen);
+        images.put("w_king", w_king);
 
         images.put("b_pawn1", b_pawn1);
         images.put("b_pawn2", b_pawn2);
@@ -89,6 +91,7 @@ public class GameController {
         images.put("b_horse1", b_horse1);
         images.put("b_horse2", b_horse2);
         images.put("b_queen", b_queen);
+        images.put("b_king", b_king);
 
         new Game(Team.WHITE, images);
     }
