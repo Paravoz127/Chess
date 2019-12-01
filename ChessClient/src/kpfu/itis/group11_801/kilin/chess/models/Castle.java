@@ -23,20 +23,19 @@ public class Castle extends Item {
     @Override
     public boolean canMove(int x, int y) {
         Game currentGame = Game.getCurrentGame();
-        Item item = currentGame.getItem(x, y);
-        if (boardY == y && boardX == x || (item != null && item.team == team)) {
+        if (isEngaged(x, y)) {
             return false;
         }
 
         if(boardY == y) {
             if (x < boardX) {
-                for (int i = boardX - 1; i > boardX; i--) {
+                for (int i = boardX - 1; i > x; i--) {
                     if (currentGame.hasItem(i, y)) {
                         return false;
                     }
                 }
             } else {
-                for (int i = boardX + 1; i < boardX; i++) {
+                for (int i = boardX + 1; i < x; i++) {
                     if (currentGame.hasItem(i, y)) {
                         return false;
                     }
@@ -45,13 +44,13 @@ public class Castle extends Item {
             return true;
         } else if (boardX == x) {
             if (y < boardY) {
-                for (int i = boardY - 1; i > boardY; i--) {
+                for (int i = boardY - 1; i > y; i--) {
                     if (currentGame.hasItem(x, i)) {
                         return false;
                     }
                 }
             } else {
-                for (int i = boardY + 1; i < boardY; i++) {
+                for (int i = boardY + 1; i < y; i++) {
                     if (currentGame.hasItem(x, i)) {
                         return false;
                     }
