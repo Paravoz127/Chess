@@ -66,6 +66,15 @@ abstract class Item {
 
     }
 
+    public boolean isEngaged(int x, int y) {
+        Game currentGame = Game.getCurrentGame();
+        Item item = currentGame.getItem(x, y);
+        if (boardY == y && boardX == x || (item != null && item.team == team)) {
+            return true;
+        }
+        return false;
+    }
+
     public abstract boolean canMove(int x, int y);
 
     public int getX() {
@@ -83,5 +92,6 @@ abstract class Item {
     protected static double intToPos(int x) {
         return x * SIZE + OFFSET;
     }
+
 
 }
