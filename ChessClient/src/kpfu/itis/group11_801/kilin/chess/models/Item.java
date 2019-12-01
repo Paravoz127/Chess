@@ -44,6 +44,7 @@ abstract class Item {
                 move(posToInt(posX), posToInt(posY));
             });
         }
+        Game.getCurrentGame().createItem(getX(), getY(), this);
     }
 
     public void destroy() {
