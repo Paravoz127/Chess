@@ -11,18 +11,25 @@ public class Game {
     public Game(Team team, Map<String, ImageView> images) {
         currentGame = this;
         currentTeam = team;
-        Pawn pawn;
-        table = new Pawn[8][8];
+        table = new Item[8][8];
 
         for (int i = 1; i <= 8; i++) {
-            pawn = new Pawn(images.get("w_pawn" + i), Team.WHITE);
-            table[pawn.getX()][pawn.getY()] = pawn;
+            new Pawn(images.get("w_pawn" + i), Team.WHITE);
         }
 
         for (int i = 1; i <= 8; i++) {
-            pawn = new Pawn(images.get("b_pawn" + i), Team.BLACK);
-            table[pawn.getX()][pawn.getY()] = pawn;
+            new Pawn(images.get("b_pawn" + i), Team.BLACK);
         }
+
+        new Castle(images.get("w_castle1"), Team.WHITE);
+        new Castle(images.get("w_castle2"), Team.WHITE);
+        new Castle(images.get("b_castle1"), Team.BLACK);
+        new Castle(images.get("b_castle2"), Team.BLACK);
+
+    }
+
+    public void createItem(int x, int y, Item item) {
+        table[x][y] = item;
     }
 
     public static Game getCurrentGame() {

@@ -6,7 +6,7 @@
 
 <Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="880.0" prefWidth="880.0" stylesheets="@MyStyle.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kpfu.itis.group11_801.kilin.chess.controllers.GameController">
    <children>
-      <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="40.0" y="40.0">
+      <ImageView fx:id="b_castle1" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="40.0" y="40.0">
          <image>
             <Image url="@../resources/b_castle.png" />
          </image></ImageView>
@@ -40,7 +40,7 @@
             <Image url="@../resources/b_hourse.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="740.0" y="40.0">
+      <ImageView fx:id="b_castle2" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="740.0" y="40.0">
          <image>
             <Image url="@../resources/b_castle.png" />
          </image>
@@ -125,7 +125,7 @@
             <Image url="@../resources/w_pawn.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="40.0" y="740.0">
+      <ImageView fx:id="w_castle1" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="40.0" y="740.0">
          <image>
             <Image url="@../resources/w_castle.png" />
          </image>
@@ -160,7 +160,7 @@
             <Image url="@../resources/w_hourse.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="740.0" y="740.0">
+      <ImageView fx:id="w_castle2" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="740.0" y="740.0">
          <image>
             <Image url="@../resources/w_castle.png" />
          </image>
