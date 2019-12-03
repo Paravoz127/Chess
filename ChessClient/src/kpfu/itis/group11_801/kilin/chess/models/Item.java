@@ -2,6 +2,7 @@ package kpfu.itis.group11_801.kilin.chess.models;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.scene.Parent;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 

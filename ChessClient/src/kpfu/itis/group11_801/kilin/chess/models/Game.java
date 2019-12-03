@@ -112,6 +112,10 @@ public class Game {
             king = b_king;
         }
         return isAttackedField(king.getX(), king.getY(), team);
+    }
 
+    public void addItem(Item item) {
+        table[item.getX()][item.getY()] = item;
+        items.add(item);
     }
 }
