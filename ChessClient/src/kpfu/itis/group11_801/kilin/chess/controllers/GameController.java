@@ -58,6 +58,11 @@ public class GameController {
 
     @FXML
     public void initialize() {
+        try {
+            new NetWorkClient("127.0.0.1");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         Map<String, ImageView> images = new TreeMap<>();
         images.put("w_pawn1", w_pawn1);
         images.put("w_pawn2", w_pawn2);
