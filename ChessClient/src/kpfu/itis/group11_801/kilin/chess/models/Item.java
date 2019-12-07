@@ -2,11 +2,11 @@ package kpfu.itis.group11_801.kilin.chess.models;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.scene.Parent;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
+import kpfu.itis.group11_801.kilin.chess.controllers.NetWorkClient;
 
-abstract class Item {
+public abstract class Item {
     protected final static int OFFSET = 40;
     protected final static int SIZE = 100;
 
@@ -42,7 +42,11 @@ abstract class Item {
                 }
             });
             imageView.setOnMouseReleased(event -> {
-                move(posToInt(posX), posToInt(posY));
+                int x = posToInt(posX);
+                int y = posToInt(posY);
+                NetWorkClient.getCurrentNetwork()
+                        .move(boardX, boardY, x, y);
+                move(x, y);
             });
         }
         Game.getCurrentGame().createItem(getX(), getY(), this);
@@ -73,6 +77,8 @@ abstract class Item {
                 }
                 return false;
             } else {
+                boardX = getX();
+                boardY = getY();
                 return true;
             }
 

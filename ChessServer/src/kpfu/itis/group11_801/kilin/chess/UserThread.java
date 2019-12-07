@@ -28,6 +28,14 @@ public class UserThread extends Thread {
             InputStream inputStream = socket.getInputStream();
             int code = inputStream.read();
             while (code != -1) {
+                System.out.println(code);
+                switch(code) {
+                    case 5:
+                        room = RandomRoom.connect(this);
+                        break;
+                    case 2:
+                        room.move(this, inputStream.read(), inputStream.read(), inputStream.read(), inputStream.read());
+                }
 
                 code = inputStream.read();
             }

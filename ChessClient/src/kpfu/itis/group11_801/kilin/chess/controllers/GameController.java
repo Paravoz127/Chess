@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import kpfu.itis.group11_801.kilin.chess.models.Game;
 import kpfu.itis.group11_801.kilin.chess.models.Team;
+import sun.nio.ch.Net;
 
 import java.util.Map;
 import java.util.TreeMap;
@@ -59,7 +60,8 @@ public class GameController {
     @FXML
     public void initialize() {
         try {
-            new NetWorkClient("127.0.0.1");
+            NetWorkClient netWorkClient = new NetWorkClient("127.0.0.1");
+            netWorkClient.randomGame();
         } catch (Exception e) {
             e.printStackTrace();
         }
