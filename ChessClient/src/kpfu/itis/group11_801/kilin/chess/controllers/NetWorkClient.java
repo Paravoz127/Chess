@@ -1,5 +1,7 @@
 package kpfu.itis.group11_801.kilin.chess.controllers;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import kpfu.itis.group11_801.kilin.chess.models.Figure;
 import kpfu.itis.group11_801.kilin.chess.models.Game;
 
@@ -24,6 +26,7 @@ public class NetWorkClient extends Thread {
     private OutputStream writer;
     private InputStream reader;
     private boolean hasRoom;
+    public static BooleanProperty hasConnection = new SimpleBooleanProperty(false);
 
     @Override
     public void run() {
@@ -52,6 +55,7 @@ public class NetWorkClient extends Thread {
         writer = socket.getOutputStream();
         reader = socket.getInputStream();
         hasRoom = false;
+        hasConnection.setValue(true);
     }
 
     public NetWorkClient(String ip) throws IOException {
