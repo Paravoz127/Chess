@@ -33,7 +33,12 @@
             <Font size="24.0" />
          </font>
       </TextField>
-      <Button fx:id="connectBtn" layoutX="348.0" layoutY="327.0" mnemonicParsing="false" onMouseClicked="#connect" prefHeight="67.0" prefWidth="185.0" text="Connect">
+      <Button fx:id="connectBtn" layoutX="348.0" layoutY="327.0" mnemonicParsing="false" onMouseClicked="#connect" prefHeight="54.0" prefWidth="185.0" text="Connect">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="menuBtn" layoutX="348.0" layoutY="401.0" mnemonicParsing="false" onMouseClicked="#toMenu" prefHeight="38.0" prefWidth="185.0" text="Back to menu">
          <font>
             <Font size="24.0" />
          </font>

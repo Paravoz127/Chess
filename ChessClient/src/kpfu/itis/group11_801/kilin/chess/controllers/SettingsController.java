@@ -2,15 +2,20 @@ package kpfu.itis.group11_801.kilin.chess.controllers;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import kpfu.itis.group11_801.kilin.chess.Main;
 
 public class SettingsController {
     @FXML private TextField ip;
     @FXML private TextField port;
     @FXML private Button connectBtn;
+    @FXML private Button menuBtn;
 
     public void connect() {
         try {
@@ -25,5 +30,11 @@ public class SettingsController {
             alert.setContentText("Connection Error");
             alert.show();
         }
+    }
+
+    public void toMenu() throws Exception {
+        Stage stage = Main.getPrimaryStage();
+        stage.getScene().setRoot(FXMLLoader.load(Main.class.getResource("views/Menu.fxml")));
+        stage.sizeToScene();
     }
 }

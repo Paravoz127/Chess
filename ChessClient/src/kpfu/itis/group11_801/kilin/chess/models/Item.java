@@ -31,6 +31,7 @@ public abstract class Item {
             imageView.setOnMousePressed(event -> {
                 boardX = posToInt(posX);
                 boardY = posToInt(posY);
+                imageView.toFront();
             });
             imageView.setOnMouseDragged(event -> {
                 if (event.getButton().equals(MouseButton.PRIMARY)) {

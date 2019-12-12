@@ -108,4 +108,8 @@ public class NetWorkClient extends Thread {
         writer.write(y2);
         writer.write(figureCode);
     }
+
+    public void setHasRoom(boolean hasRoom) {
+        this.hasRoom = hasRoom;
+    }
 }

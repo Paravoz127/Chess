@@ -7,10 +7,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+    private static Stage stage;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("views/Settings.fxml"));
+        stage = primaryStage;
+        Parent root = FXMLLoader.load(getClass().getResource("views/Menu.fxml"));
         primaryStage.setTitle("Chess");
         primaryStage.setScene(new Scene(root, 880, 880));
         primaryStage.setResizable(false);
@@ -20,5 +22,9 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    public static Stage getPrimaryStage() {
+        return stage;
     }
 }

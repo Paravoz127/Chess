@@ -5,9 +5,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="880.0" prefWidth="880.0" stylesheets="@MyStyle.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" fx:controller="kpfu.itis.group11_801.kilin.chess.controllers.MenuController" minWidth="-Infinity" prefHeight="880.0" prefWidth="880.0" stylesheets="@MyStyle.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button layoutX="288.0" layoutY="160.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="304.0" text="random game">
+      <Button fx:id="randomBtn" layoutX="288.0" onMouseClicked="#randomGame" layoutY="160.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="304.0" text="random game">
          <font>
             <Font size="23.0" />
          </font></Button>
@@ -16,17 +16,17 @@
             <Font name="System Bold" size="37.0" />
          </font>
       </Label>
-      <Button layoutX="288.0" layoutY="260.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="304.0" text="create room">
+      <Button fx:id="createBtn" layoutX="288.0" layoutY="260.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="304.0" text="create room">
          <font>
             <Font size="23.0" />
          </font>
       </Button>
-      <Button layoutX="288.0" layoutY="360.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="304.0" text="connect to room">
+      <Button fx:id="connectBtn" layoutX="288.0" layoutY="360.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="304.0" text="connect to room">
          <font>
             <Font size="23.0" />
          </font>
       </Button>
-      <Button layoutX="288.0" layoutY="460.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="304.0" text="settings">
+      <Button fx:id="settingsBtn" layoutX="288.0" layoutY="460.0" mnemonicParsing="false" onMouseClicked="#settings" prefHeight="63.0" prefWidth="304.0" text="settings">
          <font>
             <Font size="23.0" />
          </font>

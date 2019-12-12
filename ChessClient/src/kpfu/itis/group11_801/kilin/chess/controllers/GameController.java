@@ -2,7 +2,10 @@ package kpfu.itis.group11_801.kilin.chess.controllers;
 
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+import kpfu.itis.group11_801.kilin.chess.Main;
 import kpfu.itis.group11_801.kilin.chess.models.Game;
 import kpfu.itis.group11_801.kilin.chess.models.Team;
 import sun.nio.ch.Net;
@@ -53,8 +56,11 @@ public class GameController {
 
 
 
-    public void move() {
-
+    public void toMenu() throws Exception {
+        NetWorkClient.getCurrentNetwork().setHasRoom(false);
+        Stage stage = Main.getPrimaryStage();
+        stage.getScene().setRoot(FXMLLoader.load(Main.class.getResource("views/Menu.fxml")));
+        stage.setHeight(880);
     }
 
     @FXML
