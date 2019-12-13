@@ -41,4 +41,10 @@ public class Room {
     public UserThread getUser2() {
         return user2;
     }
+
+    public void giveUp(UserThread userThread) throws IOException{
+        UserThread receiver = userThread.equals(user1) ? user2 : user1;
+        receiver.sendMessage(4);
+        receiver.clearRoom();
+    }
 }

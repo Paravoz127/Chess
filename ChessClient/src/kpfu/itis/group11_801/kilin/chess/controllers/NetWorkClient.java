@@ -1,5 +1,6 @@
 package kpfu.itis.group11_801.kilin.chess.controllers;
 
+import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import kpfu.itis.group11_801.kilin.chess.models.Figure;
@@ -12,7 +13,7 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-public class NetWorkClient extends Thread {
+public class NetWorkClient {
     /**
      * -1   =>  disconnect
      * 0    =>  create room
@@ -31,29 +32,14 @@ public class NetWorkClient extends Thread {
     public static BooleanProperty hasConnection = new SimpleBooleanProperty(false);
     public static BooleanProperty yourMove = new SimpleBooleanProperty(false);
 
-    @Override
-    public void run() {
-        try {
-            int code;
-            while (hasRoom) {
-                code = reader.read();
-                System.out.println(code);
-                switch (code) {
-                    case 2:
-                        Game.getCurrentGame()
-                                .getItem(reader.read(), reader.read())
-                                .move(reader.read(), reader.read());
-                        yourMove.setValue(true);
-                        break;
-                    case 6:
-                        yourMove.setValue(true);
-                        break;
-                }
-            }
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
+    public boolean isHasRoom() {
+        return hasRoom;
     }
+
+    public static void setYourMove(boolean yourMove) {
+        NetWorkClient.yourMove.setValue(yourMove);
+    }
+
 
     public NetWorkClient(String ip, int port) throws IOException {
         socket = new Socket(ip, port);
@@ -65,10 +51,6 @@ public class NetWorkClient extends Thread {
         hasConnection.setValue(true);
     }
 
-    public NetWorkClient(String ip) throws IOException {
-        this(ip, 3456);
-    }
-
     public static NetWorkClient getCurrentNetwork() {
         return currentNetwork;
     }
@@ -76,14 +58,15 @@ public class NetWorkClient extends Thread {
     public void randomGame() throws IOException {
         writer.write(5);
         hasRoom = true;
-        start();
         int response = reader.read();
         if (response == 0) {
-            new Game(Team.WHITE, GameController.images);
+            new Game(Team.WHITE, GameController.getImages());
         } else {
-            new Game(Team.BLACK, GameController.images);
+            new Game(Team.BLACK, GameController.getImages());
         }
+        GameController.getMessageLabel().textProperty().bind(Game.getCurrentGame().messageProperty());
         System.out.println("new game");
+        new NetWorkThread(socket).start();
     }
 
     public void disconnect() throws IOException {
@@ -92,12 +75,18 @@ public class NetWorkClient extends Thread {
 
     public void move(int x1, int y1, int x2, int y2){
         try {
+            Game game = Game.getCurrentGame();
             writer.write(2);
             writer.write(x1);
             writer.write(y1);
             writer.write(x2);
             writer.write(y2);
             yourMove.setValue(false);
+            if (game.isShah(game.getCurrentTeam() == Team.WHITE ? Team.BLACK : Team.WHITE)) {
+                game.setMessage("Enemy`s move: Shah");
+            } else {
+                game.setMessage("Enemy`s move");
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -125,6 +114,21 @@ public class NetWorkClient extends Thread {
         writer.write(x2);
         writer.write(y2);
         writer.write(figureCode);
+    }
+
+    public void giveUp() {
+        try {
+            hasRoom = false;
+            writer.write(4);
+            Game.getCurrentGame().setMessage("You lose: you gived up");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void quit() {
+        hasRoom = false;
+        yourMove.setValue(false);
     }
 
     public void setHasRoom(boolean hasRoom) {

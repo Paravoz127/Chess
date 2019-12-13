@@ -17,7 +17,8 @@ import java.util.TreeMap;
 
 
 public class GameController {
-    public static Map<String, ImageView> images;
+    private static Map<String, ImageView> images;
+    private static Label messageLabel;
 
     @FXML private Pane table;
     @FXML private Label message;
@@ -61,10 +62,14 @@ public class GameController {
 
 
     public void toMenu() throws Exception {
-        NetWorkClient.getCurrentNetwork().setHasRoom(false);
+        NetWorkClient.getCurrentNetwork().giveUp();
         Stage stage = Main.getPrimaryStage();
         stage.getScene().setRoot(FXMLLoader.load(Main.class.getResource("views/Menu.fxml")));
         stage.setHeight(880);
+    }
+
+    public void giveUp() throws Exception{
+        NetWorkClient.getCurrentNetwork().giveUp();
     }
 
     @FXML
@@ -103,7 +108,16 @@ public class GameController {
         images.put("b_horse2", b_horse2);
         images.put("b_queen", b_queen);
         images.put("b_king", b_king);
-        table.disableProperty().bind(NetWorkClient.yourMove.not());
 
+        table.disableProperty().bind(NetWorkClient.yourMove.not());
+        messageLabel = message;
+    }
+
+    public static Label getMessageLabel() {
+        return messageLabel;
+    }
+
+    public static Map<String, ImageView> getImages() {
+        return images;
     }
 }

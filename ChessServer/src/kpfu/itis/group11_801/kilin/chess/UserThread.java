@@ -35,6 +35,14 @@ public class UserThread extends Thread {
                         break;
                     case 2:
                         room.move(this, inputStream.read(), inputStream.read(), inputStream.read(), inputStream.read());
+                        break;
+                    case 4:
+                        try {
+                            room.giveUp(this);
+                            clearRoom();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                 }
 
                 code = inputStream.read();
@@ -49,6 +57,11 @@ public class UserThread extends Thread {
     public void sendMessage(int message) throws IOException{
         OutputStream outputStream = socket.getOutputStream();
         outputStream.write(message);
+        System.out.println(message);
+    }
+
+    public void clearRoom() {
+        room = null;
     }
 
 

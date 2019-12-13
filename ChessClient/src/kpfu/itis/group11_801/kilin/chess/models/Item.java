@@ -45,9 +45,14 @@ public abstract class Item {
             imageView.setOnMouseReleased(event -> {
                 int x = posToInt(posX);
                 int y = posToInt(posY);
-                NetWorkClient.getCurrentNetwork()
-                        .move(boardX, boardY, x, y);
-                move(x, y);
+                int tmpX = boardX;
+                int tmpY = boardY;
+                if (move(x, y)) {
+                    NetWorkClient.getCurrentNetwork()
+                            .move(tmpX, tmpY, x, y);
+                }
+
+
             });
         }
         Game.getCurrentGame().createItem(getX(), getY(), this);

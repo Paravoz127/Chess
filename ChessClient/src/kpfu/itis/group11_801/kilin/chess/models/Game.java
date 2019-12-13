@@ -1,4 +1,6 @@
 package kpfu.itis.group11_801.kilin.chess.models;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
@@ -11,6 +13,7 @@ public class Game {
     private Team currentTeam;
     private King w_king;
     private King b_king;
+    private StringProperty message = new SimpleStringProperty("Waiting of second player");
 
     public Game(Team team, Map<String, ImageView> images) {
         items = new ArrayList<>();
@@ -49,6 +52,10 @@ public class Game {
         b_king = new King(images.get("b_king"), Team.BLACK);
         items.add(b_king);
 
+    }
+
+    public StringProperty messageProperty() {
+        return message;
     }
 
     public void createItem(int x, int y, Item item) {
@@ -117,5 +124,9 @@ public class Game {
     public void addItem(Item item) {
         table[item.getX()][item.getY()] = item;
         items.add(item);
+    }
+
+    public void setMessage(String s) {
+        messageProperty().setValue(s);
     }
 }
