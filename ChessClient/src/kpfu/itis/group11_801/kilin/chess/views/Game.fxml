@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="970.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kpfu.itis.group11_801.kilin.chess.controllers.GameController">
-   <Pane fx:id="pane" layoutY="90.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="880.0" prefWidth="880.0" stylesheets="@MyStyle.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <Pane fx:id="table" layoutY="90.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="880.0" prefWidth="880.0" stylesheets="@MyStyle.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
       <children>
          <ImageView fx:id="b_castle1" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="40.0" y="40.0">
             <image>
@@ -171,4 +173,9 @@
    </Pane>
    <Button fx:id="menuBtn" layoutX="677.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#toMenu" prefHeight="46.0" prefWidth="177.0" text="To menu" />
    <Button fx:id="giveUpBtn" layoutX="458.0" layoutY="22.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="177.0" text="Give up" />
+   <Label fx:id="message" layoutX="69.0" layoutY="26.0" prefHeight="38.0" prefWidth="319.0" text="Waiting of second player">
+      <font>
+         <Font size="26.0" />
+      </font>
+   </Label>
 </Pane>

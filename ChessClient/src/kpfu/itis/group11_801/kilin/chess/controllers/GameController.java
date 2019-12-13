@@ -3,7 +3,9 @@ package kpfu.itis.group11_801.kilin.chess.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import kpfu.itis.group11_801.kilin.chess.Main;
 import kpfu.itis.group11_801.kilin.chess.models.Game;
@@ -15,8 +17,10 @@ import java.util.TreeMap;
 
 
 public class GameController {
-    private double x;
-    private double y;
+    public static Map<String, ImageView> images;
+
+    @FXML private Pane table;
+    @FXML private Label message;
 
     @FXML private ImageView w_pawn1;
     @FXML private ImageView w_pawn2;
@@ -65,13 +69,7 @@ public class GameController {
 
     @FXML
     public void initialize() {
-        try {
-            NetWorkClient netWorkClient = new NetWorkClient("127.0.0.1");
-            netWorkClient.randomGame();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        Map<String, ImageView> images = new TreeMap<>();
+        images = new TreeMap<>();
         images.put("w_pawn1", w_pawn1);
         images.put("w_pawn2", w_pawn2);
         images.put("w_pawn3", w_pawn3);
@@ -105,7 +103,7 @@ public class GameController {
         images.put("b_horse2", b_horse2);
         images.put("b_queen", b_queen);
         images.put("b_king", b_king);
+        table.disableProperty().bind(NetWorkClient.yourMove.not());
 
-        new Game(Team.WHITE, images);
     }
 }

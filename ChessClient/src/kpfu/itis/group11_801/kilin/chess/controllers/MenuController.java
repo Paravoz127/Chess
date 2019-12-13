@@ -32,6 +32,7 @@ public class MenuController {
         Scene scene = stage.getScene();
         stage.setScene(new Scene(FXMLLoader.load(Main.class.getResource("views/Game.fxml"))));
         stage.setHeight(970);
+        NetWorkClient.getCurrentNetwork().randomGame();
     }
 
     @FXML

@@ -33,4 +33,12 @@ public class Room {
         receiver.sendMessage(y2);
         receiver.sendMessage(figure);
     }
+
+    public UserThread getUser1() {
+        return user1;
+    }
+
+    public UserThread getUser2() {
+        return user2;
+    }
 }

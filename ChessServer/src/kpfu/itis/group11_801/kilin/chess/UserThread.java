@@ -41,7 +41,7 @@ public class UserThread extends Thread {
             }
 
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

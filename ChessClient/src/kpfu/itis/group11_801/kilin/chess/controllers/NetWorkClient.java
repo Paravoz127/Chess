@@ -4,6 +4,7 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import kpfu.itis.group11_801.kilin.chess.models.Figure;
 import kpfu.itis.group11_801.kilin.chess.models.Game;
+import kpfu.itis.group11_801.kilin.chess.models.Team;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,6 +21,7 @@ public class NetWorkClient extends Thread {
      * 3    =>  special move 1 - horse, 2 - elephant, 3 - queen, 4 - castle
      * 4    =>  give up
      * 5    =>  random game
+     * 6    =>  game started if you are white
      */
     private static NetWorkClient currentNetwork;
     private Socket socket;
@@ -27,6 +29,7 @@ public class NetWorkClient extends Thread {
     private InputStream reader;
     private boolean hasRoom;
     public static BooleanProperty hasConnection = new SimpleBooleanProperty(false);
+    public static BooleanProperty yourMove = new SimpleBooleanProperty(false);
 
     @Override
     public void run() {
@@ -40,6 +43,10 @@ public class NetWorkClient extends Thread {
                         Game.getCurrentGame()
                                 .getItem(reader.read(), reader.read())
                                 .move(reader.read(), reader.read());
+                        yourMove.setValue(true);
+                        break;
+                    case 6:
+                        yourMove.setValue(true);
                         break;
                 }
             }
@@ -70,6 +77,12 @@ public class NetWorkClient extends Thread {
         writer.write(5);
         hasRoom = true;
         start();
+        int response = reader.read();
+        if (response == 0) {
+            new Game(Team.WHITE, GameController.images);
+        } else {
+            new Game(Team.BLACK, GameController.images);
+        }
         System.out.println("new game");
     }
 
@@ -84,6 +97,7 @@ public class NetWorkClient extends Thread {
             writer.write(y1);
             writer.write(x2);
             writer.write(y2);
+            yourMove.setValue(false);
         } catch (IOException e) {
             e.printStackTrace();
         }
