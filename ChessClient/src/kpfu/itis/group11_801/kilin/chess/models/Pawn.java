@@ -31,7 +31,7 @@ public class Pawn extends Item {
                     dialog.setHeaderText("Select Figure:");
                     dialog.setContentText("Figure:");
                     Optional<Figure> result = Optional.empty();
-                    while (!result.isPresent()){
+                    while (!result.isPresent()) {
                         result = dialog.showAndWait();
                     }
                     Figure figure = result.get();

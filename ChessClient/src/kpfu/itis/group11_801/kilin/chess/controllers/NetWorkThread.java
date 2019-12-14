@@ -12,6 +12,17 @@ import java.io.Reader;
 import java.net.Socket;
 
 public class NetWorkThread extends Thread {
+    /**
+     * -1   =>  disconnect
+     * 0    =>  create room
+     * 1    =>  connect to room
+     * 2    =>  move
+     * 3    =>  special move 1 - horse, 2 - elephant, 3 - queen, 4 - castle
+     * 4    =>  give up
+     * 5    =>  random game
+     * 6    =>  game started if you are white
+     * 100  => stop word
+     */
     private OutputStream writer;
     private InputStream reader;
 
@@ -49,6 +60,7 @@ public class NetWorkThread extends Thread {
                         Platform.runLater(() -> game.setMessage("You win: enemy gived up"));
                 }
             }
+            System.out.println("Closed");
         }catch (IOException e) {
             e.printStackTrace();
         }

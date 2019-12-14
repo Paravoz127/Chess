@@ -14,16 +14,6 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class NetWorkClient {
-    /**
-     * -1   =>  disconnect
-     * 0    =>  create room
-     * 1    =>  connect to room
-     * 2    =>  move
-     * 3    =>  special move 1 - horse, 2 - elephant, 3 - queen, 4 - castle
-     * 4    =>  give up
-     * 5    =>  random game
-     * 6    =>  game started if you are white
-     */
     private static NetWorkClient currentNetwork;
     private Socket socket;
     private OutputStream writer;
@@ -65,6 +55,9 @@ public class NetWorkClient {
             new Game(Team.BLACK, GameController.getImages());
         }
         GameController.getMessageLabel().textProperty().bind(Game.getCurrentGame().messageProperty());
+        if (response == 1) {
+            Game.getCurrentGame().setMessage("Enemy`s move");
+        }
         System.out.println("new game");
         new NetWorkThread(socket).start();
     }
@@ -96,23 +89,30 @@ public class NetWorkClient {
         int figureCode = 0;
         switch (figure.getName()) {
             case "Horse":
-                figureCode = 1;
+                figureCode = 3;
                 break;
             case "Elephant":
                 figureCode = 2;
                 break;
             case "Queen":
-                figureCode = 3;
+                figureCode = 1;
                 break;
             case "Castle":
                 figureCode = 4;
                 break;
         }
+        Game game = Game.getCurrentGame();
         writer.write(3);
         writer.write(x1);
         writer.write(y1);
         writer.write(x2);
         writer.write(y2);
+        yourMove.setValue(false);
+        if (game.isShah(game.getCurrentTeam() == Team.WHITE ? Team.BLACK : Team.WHITE)) {
+            game.setMessage("Enemy`s move: Shah");
+        } else {
+            game.setMessage("Enemy`s move");
+        }
         writer.write(figureCode);
     }
 

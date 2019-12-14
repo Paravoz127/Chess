@@ -25,6 +25,13 @@ public class Room {
     }
 
     public void specialMove(UserThread sender, int x1, int y1, int x2, int y2, int figure) throws Exception {
+        /**
+         * Figure codes:
+         * 1 - queen
+         * 2 - elephant
+         * 3 - horse
+         * 4 - castle
+         */
         UserThread receiver = sender.equals(user1) ? user2 : user1;
         receiver.sendMessage(3);
         receiver.sendMessage(x1);
@@ -43,8 +50,9 @@ public class Room {
     }
 
     public void giveUp(UserThread userThread) throws IOException{
-        UserThread receiver = userThread.equals(user1) ? user2 : user1;
-        receiver.sendMessage(4);
-        receiver.clearRoom();
+            UserThread receiver = userThread.equals(user1) ? user2 : user1;
+            userThread.sendMessage(100);
+            receiver.sendMessage(4);
+            receiver.clearRoom();
     }
 }

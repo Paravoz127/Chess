@@ -1,5 +1,6 @@
 package kpfu.itis.group11_801.kilin.chess;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class RandomRoom extends Room {
@@ -22,6 +23,15 @@ public class RandomRoom extends Room {
             userThread.sendMessage(1);
             room.getUser1().sendMessage(6);
             return room;
+        }
+    }
+
+    @Override
+    public void giveUp(UserThread userThread) throws IOException {
+        try {
+            super.giveUp(userThread);
+        } catch (NullPointerException e) {
+            rooms.remove(userThread.getRoom());
         }
     }
 }

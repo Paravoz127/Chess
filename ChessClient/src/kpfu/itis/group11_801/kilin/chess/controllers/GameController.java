@@ -74,6 +74,7 @@ public class GameController {
 
     @FXML
     public void initialize() {
+        System.out.println("init");
         images = new TreeMap<>();
         images.put("w_pawn1", w_pawn1);
         images.put("w_pawn2", w_pawn2);

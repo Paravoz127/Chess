@@ -18,6 +18,10 @@ public class UserThread extends Thread {
     private Socket socket;
     private Room room;
 
+    public Room getRoom() {
+        return room;
+    }
+
     public UserThread(Socket socket) {
         this.socket = socket;
     }

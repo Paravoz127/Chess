@@ -31,7 +31,7 @@
             <Font size="23.0" />
          </font>
       </Button>
-      <Label fx:id="errorMessage" alignment="CENTER" layoutX="242.0" layoutY="564.0" prefHeight="32.0" prefWidth="396.0" text="NOT CONNECTED" textFill="#a10404">
+      <Label fx:id="errorMessage" alignment="CENTER" layoutX="242.0" layoutY="564.0" prefHeight="32.0" prefWidth="396.0" text="Disconected" textFill="#a10404">
          <font>
             <Font name="System Bold" size="37.0" />
          </font>
