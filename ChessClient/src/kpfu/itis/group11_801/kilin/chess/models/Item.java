@@ -1,14 +1,20 @@
 package kpfu.itis.group11_801.kilin.chess.models;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
+import javafx.util.Duration;
 import kpfu.itis.group11_801.kilin.chess.controllers.NetWorkClient;
 
 public abstract class Item {
     protected final static int OFFSET = 40;
     protected final static int SIZE = 100;
+    protected final static int SPEED = 5;
 
     protected DoubleProperty posX;
     protected DoubleProperty posY;
@@ -47,12 +53,7 @@ public abstract class Item {
                 int y = posToInt(posY);
                 int tmpX = boardX;
                 int tmpY = boardY;
-                if (move(x, y)) {
-                    NetWorkClient.getCurrentNetwork()
-                            .move(tmpX, tmpY, x, y);
-                }
-
-
+                move(x, y);
             });
         }
         Game.getCurrentGame().createItem(getX(), getY(), this);
@@ -67,8 +68,11 @@ public abstract class Item {
     }
 
     public boolean move(int x, int y) {
-        if(canMove(x, y)) {
+        if (canMove(x, y)) {
             Item item = Game.getCurrentGame().getItem(x, y);
+            if (team != Game.getCurrentGame().getCurrentTeam()) {
+                animate(x, y);
+            }
             posX.set(intToPos(x));
             posY.set(intToPos(y));
             Game.getCurrentGame().deleteElem(x, y);
@@ -83,6 +87,10 @@ public abstract class Item {
                 }
                 return false;
             } else {
+                if (team == Game.getCurrentGame().getCurrentTeam()) {
+                    NetWorkClient.getCurrentNetwork()
+                            .move(boardX, boardY, x, y);
+                }
                 boardX = getX();
                 boardY = getY();
                 return true;
@@ -94,6 +102,16 @@ public abstract class Item {
             return false;
         }
 
+    }
+
+    protected void animate(int x, int y) {
+        double length = Math.sqrt((boardX - x) * (boardX - x) + (boardY - y) * (boardY - y));
+        double time = length / SPEED;
+        KeyValue kvx = new KeyValue(posX, intToPos(x));
+        KeyValue kvy = new KeyValue(posY, intToPos(y));
+        KeyFrame kf = new KeyFrame(Duration.seconds(time), kvx, kvy);
+        Timeline t = new Timeline(kf);
+        t.play();
     }
 
     public boolean isEngaged(int x, int y) {
