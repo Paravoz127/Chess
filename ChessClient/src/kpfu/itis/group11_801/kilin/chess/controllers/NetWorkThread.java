@@ -1,14 +1,13 @@
 package kpfu.itis.group11_801.kilin.chess.controllers;
 
 import javafx.application.Platform;
+import kpfu.itis.group11_801.kilin.chess.models.Figure;
 import kpfu.itis.group11_801.kilin.chess.models.Game;
+import kpfu.itis.group11_801.kilin.chess.models.Pawn;
 import kpfu.itis.group11_801.kilin.chess.models.Team;
 import sun.nio.ch.Net;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.Reader;
+import java.io.*;
 import java.net.Socket;
 
 public class NetWorkThread extends Thread {
@@ -58,6 +57,44 @@ public class NetWorkThread extends Thread {
                     case 4:
                         netWorkClient.quit();
                         Platform.runLater(() -> game.setMessage("You win: enemy gived up"));
+                        break;
+                    case 3:
+                        int x = reader.read();
+                        int y = reader.read();
+                        int figureCode = reader.read();
+                        Pawn pawn = (Pawn)game.getItem(x, y);
+                        if (game.getCurrentTeam() == Team.WHITE) {
+                            switch (figureCode) {
+                                case 1:
+                                    Platform.runLater(() -> pawn.changeType(Figure.BLACK_QUEEN));
+                                    break;
+                                case 2:
+                                    Platform.runLater(() -> pawn.changeType(Figure.BLACK_ELEPHANT));
+                                    break;
+                                case 3:
+                                    Platform.runLater(() -> pawn.changeType(Figure.BLACK_HORSE));
+                                    break;
+                                case 4:
+                                    Platform.runLater(() -> pawn.changeType(Figure.BLACK_CASTLE));
+                                    break;
+                            }
+                        } else {
+                            switch (figureCode) {
+                                case 1:
+                                    Platform.runLater(() -> pawn.changeType(Figure.WHITE_QUEEN));
+                                    break;
+                                case 2:
+                                    Platform.runLater(() -> pawn.changeType(Figure.WHITE_ELEPHANT));
+                                    break;
+                                case 3:
+                                    Platform.runLater(() -> pawn.changeType(Figure.WHITE_HORSE));
+                                    break;
+                                case 4:
+                                    Platform.runLater(() -> pawn.changeType(Figure.WHITE_CASTLE));
+                                    break;
+                            }
+                        }
+                        break;
                 }
             }
             System.out.println("Closed");

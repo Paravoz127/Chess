@@ -37,6 +37,9 @@ public class UserThread extends Thread {
                     case 5:
                         room = RandomRoom.connect(this);
                         break;
+                    case 3:
+                        room.specialMove(this, inputStream.read(), inputStream.read(), inputStream.read());
+                        break;
                     case 2:
                         room.move(this, inputStream.read(), inputStream.read(), inputStream.read(), inputStream.read());
                         break;

@@ -24,7 +24,7 @@ public class Room {
         receiver.sendMessage(y2);
     }
 
-    public void specialMove(UserThread sender, int x1, int y1, int x2, int y2, int figure) throws Exception {
+    public void specialMove(UserThread sender, int x, int y, int figure) throws Exception {
         /**
          * Figure codes:
          * 1 - queen
@@ -34,10 +34,8 @@ public class Room {
          */
         UserThread receiver = sender.equals(user1) ? user2 : user1;
         receiver.sendMessage(3);
-        receiver.sendMessage(x1);
-        receiver.sendMessage(y1);
-        receiver.sendMessage(x2);
-        receiver.sendMessage(y2);
+        receiver.sendMessage(x);
+        receiver.sendMessage(y);
         receiver.sendMessage(figure);
     }
 

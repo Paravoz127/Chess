@@ -4,6 +4,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import kpfu.itis.group11_801.kilin.chess.controllers.NetWorkClient;
 
 import java.util.Optional;
 
@@ -35,8 +36,12 @@ public class Pawn extends Item {
                         result = dialog.showAndWait();
                     }
                     Figure figure = result.get();
-                    Game.getCurrentGame().deleteElem(getX(), getY());
-                    registryItem(figure);
+                    changeType(figure);
+                    try {
+                        NetWorkClient.getCurrentNetwork().specialMove(getX(), getY(), figure);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
 
             }
@@ -67,6 +72,11 @@ public class Pawn extends Item {
             }
         }
         return false;
+    }
+
+    public void changeType(Figure figure) {
+        Game.getCurrentGame().deleteElem(getX(), getY());
+        registryItem(figure);
     }
 
     private void registryItem(Figure figure) {

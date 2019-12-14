@@ -85,7 +85,7 @@ public class NetWorkClient {
         }
     }
 
-    public void specialMove(int x1, int y1, int x2, int y2, Figure figure) throws IOException {
+    public void specialMove(int x, int y, Figure figure) throws IOException {
         int figureCode = 0;
         switch (figure.getName()) {
             case "Horse":
@@ -103,16 +103,8 @@ public class NetWorkClient {
         }
         Game game = Game.getCurrentGame();
         writer.write(3);
-        writer.write(x1);
-        writer.write(y1);
-        writer.write(x2);
-        writer.write(y2);
-        yourMove.setValue(false);
-        if (game.isShah(game.getCurrentTeam() == Team.WHITE ? Team.BLACK : Team.WHITE)) {
-            game.setMessage("Enemy`s move: Shah");
-        } else {
-            game.setMessage("Enemy`s move");
-        }
+        writer.write(x);
+        writer.write(y);
         writer.write(figureCode);
     }
 
