@@ -67,7 +67,7 @@ public abstract class Item {
         imageView.setVisible(true);
     }
 
-    public boolean move(int x, int y) {
+    public synchronized boolean move(int x, int y) {
         if (canMove(x, y)) {
             Item item = Game.getCurrentGame().getItem(x, y);
             Game.getCurrentGame().deleteElem(x, y);
@@ -99,14 +99,32 @@ public abstract class Item {
 
                 Game game = Game.getCurrentGame();
                 if (team == game.getCurrentTeam()) {
-                    if (game.isShah(game.getCurrentTeam() == Team.WHITE ? Team.BLACK : Team.WHITE)) {
-                        game.setMessage("Enemy`s move: Check");
+                    Team enemyTeam = game.getCurrentTeam() == Team.WHITE ? Team.BLACK : Team.WHITE;
+                    if (game.isShah(enemyTeam)) {
+                        if (game.isCheckMate(enemyTeam)) {
+                            try {
+                                game.setMessage("Your win: Checkmate");
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            game.setMessage("Enemy`s move: Check");
+                        }
                     } else {
                         game.setMessage("Enemy`s move");
                     }
                 } else {
                     if (game.isShah(game.getCurrentTeam())) {
-                        game.setMessage("Your move: Check");
+                        if (game.isCheckMate(game.getCurrentTeam())) {
+                            try {
+                                NetWorkClient.getCurrentNetwork().checkMate();
+                                game.setMessage("Your lose: Checkmate");
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            game.setMessage("Your move: Check");
+                        }
                     } else {
                         game.setMessage("Your move");
                     }

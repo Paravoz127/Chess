@@ -4,6 +4,7 @@ import javafx.beans.property.StringProperty;
 import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Map;
 
 public class Game {
@@ -111,6 +112,135 @@ public class Game {
         return false;
     }
 
+    public Item whoAttacked(int x, int y, Team team) {
+        for (Item item : items) {
+            if (item.team != team && item.canMove(x, y)) {
+                return item;
+            }
+        }
+        return null;
+    }
+
+    public boolean isCheckMate(Team team) {
+        King king;
+        if (team == Team.WHITE) {
+            king = w_king;
+        } else {
+            king = b_king;
+        }
+
+        int kingX = king.getX();
+        int kingY = king.getY();
+
+        if (!isShah(team)) {
+            return false;
+        }
+        /**
+         * if king can move
+         */
+        for (int i = -1; i <= 1; i++) {
+            for (int j = -1; j <= 1; j++) {
+                int x = kingX + i;
+                int y = kingY + j;
+                if (x >= 0 && y >= 0 && x <= 7 && y <= 7) {
+                    if (king.canMove(x, y)) {
+                        if (tryMove(king, x, y)) {
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+
+        Item attacker = whoAttacked(king.getX(), king.getY(), team);
+
+        int attackerX = attacker.getX();
+        int attackerY = attacker.getY();
+
+        /**
+         * if enemy`s figure can be attacked
+         */
+        if (tryAllMove(king.team, attackerX, attackerY)) {
+            return false;
+        }
+
+        /**
+         * if we can close king from attacker
+         */
+
+        if (!(attacker instanceof Horse)) {
+            if (attackerX == kingX) {
+                int minY = attackerY > kingY ? kingY : attackerY;
+                int maxY = attackerY < kingY ? kingY : attackerY;
+
+                for (int i = minY + 1; i < maxY; i++) {
+                    if (tryAllMove(king.team, kingX, i)) {
+                        return false;
+                    }
+                }
+            } else if (attackerY == kingY) {
+                int minX = attackerX > kingX ? kingX : attackerX;
+                int maxX = attackerX < kingX ? kingX : attackerX;
+
+                for (int i = minX + 1; i < maxX; i++) {
+                    if (tryAllMove(king.team, i, kingY)) {
+                        return false;
+                    }
+                }
+            } else {
+                int minY = attackerY > kingY ? kingY : attackerY;
+                int minX = attackerX > kingX ? kingX : attackerX;
+                int maxX = attackerX < kingX ? kingX : attackerX;
+
+                for (int i = 1; i <= maxX - minX; i++) {
+                    if (tryAllMove(king.team, minX + i, minY + 1)) {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        return true;
+    }
+
+    public boolean tryAllMove(Team team, int x, int y) {
+        ArrayList<Item> copyOfItems = new ArrayList<>(items);
+        for (Item item : copyOfItems) {
+            if (item.team == team) {
+                if (item.canMove(x, y)) {
+                    if(tryMove(item, x, y)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean tryMove(Item item, int x, int y) {
+        boolean res = true;
+        if (item.canMove(x, y)) {
+            Item removedItem = Game.getCurrentGame().getItem(x, y);
+            Game.getCurrentGame().deleteElem(x, y);
+            Game.getCurrentGame().moveItem(item.boardX, item.boardY, x, y);
+            item.posX.set(Item.intToPos(x));
+            item.posY.set(Item.intToPos(y));
+
+            if (Game.getCurrentGame().isShah(item.team)) {
+                res = false;
+            }
+            item.posX.set(Item.intToPos(item.boardX));
+            item.posY.set(Item.intToPos(item.boardY));
+            Game.getCurrentGame().moveItem(x, y, item.boardX, item.boardY);
+            if (removedItem != null) {
+                Game.getCurrentGame().restoreElem(x, y, removedItem);
+            }
+            return res;
+        } else {
+            return false;
+        }
+    }
+
     public boolean isShah(Team team) {
         King king;
         if (team == Team.WHITE) {
@@ -118,17 +248,6 @@ public class Game {
         } else {
             king = b_king;
         }
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                if (table[i][j] == null) {
-                    System.out.print("null\t");
-                } else {
-                    System.out.print( table[i][j].getClass().getSimpleName() + "\t");
-                }
-            }
-            System.out.println();
-        }
-        System.out.println(isAttackedField(king.getX(), king.getY(), team));
         return isAttackedField(king.getX(), king.getY(), team);
     }
 

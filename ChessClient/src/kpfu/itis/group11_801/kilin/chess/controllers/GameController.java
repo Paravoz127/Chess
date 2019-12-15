@@ -1,8 +1,10 @@
 package kpfu.itis.group11_801.kilin.chess.controllers;
 
 
+import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -10,6 +12,7 @@ import javafx.stage.Stage;
 import kpfu.itis.group11_801.kilin.chess.Main;
 import kpfu.itis.group11_801.kilin.chess.models.Game;
 import kpfu.itis.group11_801.kilin.chess.models.Team;
+import sun.net.NetworkClient;
 import sun.nio.ch.Net;
 
 import java.util.Map;
@@ -19,6 +22,8 @@ import java.util.TreeMap;
 public class GameController {
     private static Map<String, ImageView> images;
     private static Label messageLabel;
+
+    @FXML private Button giveUpBtn;
 
     @FXML private Pane table;
     @FXML private Label message;
@@ -111,6 +116,7 @@ public class GameController {
         images.put("b_king", b_king);
 
         table.disableProperty().bind(NetWorkClient.yourMove.not());
+        giveUpBtn.disableProperty().bind(NetWorkClient.getCurrentNetwork().gameIsGoingProperty().not());
         messageLabel = message;
     }
 

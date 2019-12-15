@@ -14,6 +14,7 @@ public class UserThread extends Thread {
      * 3    =>  special move 1 - horse, 2 - elephant, 3 - queen, 4 - castle
      * 4    =>  give up
      * 5    =>  random game
+     * 7    =>  checkmate
      */
     private Socket socket;
     private Room room;
@@ -34,6 +35,14 @@ public class UserThread extends Thread {
             while (code != -1) {
                 System.out.println(code);
                 switch(code) {
+                    case 7:
+                        try {
+                            room.checkmate(this);
+                            clearRoom();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        break;
                     case 5:
                         room = RandomRoom.connect(this);
                         break;

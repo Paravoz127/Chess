@@ -53,4 +53,11 @@ public class Room {
             receiver.sendMessage(4);
             receiver.clearRoom();
     }
+
+    public void checkmate(UserThread userThread) throws IOException{
+        UserThread receiver = userThread.equals(user1) ? user2 : user1;
+        userThread.sendMessage(100);
+        receiver.sendMessage(7);
+        receiver.clearRoom();
+    }
 }

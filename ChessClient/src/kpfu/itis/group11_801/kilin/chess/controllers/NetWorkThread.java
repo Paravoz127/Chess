@@ -40,6 +40,9 @@ public class NetWorkThread extends Thread {
                 code = reader.read();
                 System.out.println(code);
                 switch (code) {
+                    case 7:
+                        netWorkClient.quit();
+                        break;
                     case 2:
                             final int x1 = reader.read();
                             final int y1 = reader.read();
@@ -58,6 +61,7 @@ public class NetWorkThread extends Thread {
                     case 6:
                         NetWorkClient.setYourMove(true);
                         Platform.runLater(() -> game.setMessage("Your move"));
+                        Platform.runLater(() -> netWorkClient.gameIsGoingProperty().setValue(true));
                         break;
                     case 4:
                         netWorkClient.quit();

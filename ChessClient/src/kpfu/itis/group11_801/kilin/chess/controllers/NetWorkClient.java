@@ -18,12 +18,13 @@ public class NetWorkClient {
     private Socket socket;
     private OutputStream writer;
     private InputStream reader;
-    private boolean hasRoom;
+    private BooleanProperty gameIsGoing = new SimpleBooleanProperty(false);
+    private BooleanProperty hasRoom = new SimpleBooleanProperty(false);
     public static BooleanProperty hasConnection = new SimpleBooleanProperty(false);
     public static BooleanProperty yourMove = new SimpleBooleanProperty(false);
 
     public boolean isHasRoom() {
-        return hasRoom;
+        return hasRoom.get();
     }
 
     public static void setYourMove(boolean yourMove) {
@@ -37,8 +38,17 @@ public class NetWorkClient {
         currentNetwork = this;
         writer = socket.getOutputStream();
         reader = socket.getInputStream();
-        hasRoom = false;
+        hasRoom.setValue(false);
         hasConnection.setValue(true);
+        gameIsGoing.setValue(false);
+    }
+
+    public BooleanProperty gameIsGoingProperty() {
+        return gameIsGoing;
+    }
+
+    public void setGameIsGoing(boolean gameIsGoing) {
+        this.gameIsGoing.set(gameIsGoing);
     }
 
     public static NetWorkClient getCurrentNetwork() {
@@ -47,12 +57,13 @@ public class NetWorkClient {
 
     public void randomGame() throws IOException {
         writer.write(5);
-        hasRoom = true;
+        hasRoom.setValue(true);
         int response = reader.read();
         if (response == 0) {
             new Game(Team.WHITE, GameController.getImages());
         } else {
             new Game(Team.BLACK, GameController.getImages());
+            setGameIsGoing(true);
         }
         GameController.getMessageLabel().textProperty().bind(Game.getCurrentGame().messageProperty());
         if (response == 1) {
@@ -104,7 +115,8 @@ public class NetWorkClient {
 
     public void giveUp() {
         try {
-            hasRoom = false;
+            gameIsGoing.setValue(false);
+            hasRoom.setValue(false);
             writer.write(4);
             Game.getCurrentGame().setMessage("You lose: you gived up");
         } catch (Exception e) {
@@ -113,11 +125,21 @@ public class NetWorkClient {
     }
 
     public void quit() {
-        hasRoom = false;
+        hasRoom.setValue(false);
         yourMove.setValue(false);
+        setGameIsGoing(false);
+    }
+
+    public void checkMate() throws Exception{
+        writer.write(7);
+        hasRoom.setValue(false);
     }
 
     public void setHasRoom(boolean hasRoom) {
-        this.hasRoom = hasRoom;
+        this.hasRoom.setValue(hasRoom);
+    }
+
+    public BooleanProperty hasRoomProperty() {
+        return hasRoom;
     }
 }
