@@ -20,6 +20,10 @@ public class Castle extends Item {
         return false;
     }
 
+    public boolean isMoved() {
+        return moved;
+    }
+
     @Override
     public boolean canMove(int x, int y) {
         Game currentGame = Game.getCurrentGame();
