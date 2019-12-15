@@ -100,13 +100,13 @@ public abstract class Item {
                 Game game = Game.getCurrentGame();
                 if (team == game.getCurrentTeam()) {
                     if (game.isShah(game.getCurrentTeam() == Team.WHITE ? Team.BLACK : Team.WHITE)) {
-                        game.setMessage("Enemy`s move: Shah");
+                        game.setMessage("Enemy`s move: Check");
                     } else {
                         game.setMessage("Enemy`s move");
                     }
                 } else {
                     if (game.isShah(game.getCurrentTeam())) {
-                        game.setMessage("Your move: Shah");
+                        game.setMessage("Your move: Check");
                     } else {
                         game.setMessage("Your move");
                     }
