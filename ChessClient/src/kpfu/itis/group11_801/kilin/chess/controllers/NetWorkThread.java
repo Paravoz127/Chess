@@ -41,15 +41,20 @@ public class NetWorkThread extends Thread {
                 System.out.println(code);
                 switch (code) {
                     case 2:
-                        game.getItem(reader.read(), reader.read())
-                                .move(reader.read(), reader.read());
-                        NetWorkClient.setYourMove(true);
-                        if (game.isShah(game.getCurrentTeam())) {
-                            Platform.runLater(() -> game.setMessage("Your move: Shah"));
-                        } else {
-                            Platform.runLater(() -> game.setMessage("Your move"));
-                        }
-                        break;
+                            final int x1 = reader.read();
+                            final int y1 = reader.read();
+                            final int x2 = reader.read();
+                            final int y2 = reader.read();
+                            Platform.runLater(() -> {
+                                try {
+                                    game.getItem(x1, y1)
+                                            .move(x2, y2);
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            });
+                            NetWorkClient.setYourMove(true);
+                            break;
                     case 6:
                         NetWorkClient.setYourMove(true);
                         Platform.runLater(() -> game.setMessage("Your move"));

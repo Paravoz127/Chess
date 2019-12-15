@@ -75,11 +75,6 @@ public class NetWorkClient {
             writer.write(x2);
             writer.write(y2);
             yourMove.setValue(false);
-            if (game.isShah(game.getCurrentTeam() == Team.WHITE ? Team.BLACK : Team.WHITE)) {
-                game.setMessage("Enemy`s move: Shah");
-            } else {
-                game.setMessage("Enemy`s move");
-            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -101,7 +96,6 @@ public class NetWorkClient {
                 figureCode = 4;
                 break;
         }
-        Game game = Game.getCurrentGame();
         writer.write(3);
         writer.write(x);
         writer.write(y);

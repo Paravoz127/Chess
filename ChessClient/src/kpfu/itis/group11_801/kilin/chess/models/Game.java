@@ -118,6 +118,17 @@ public class Game {
         } else {
             king = b_king;
         }
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (table[i][j] == null) {
+                    System.out.print("null\t");
+                } else {
+                    System.out.print( table[i][j].getClass().getSimpleName() + "\t");
+                }
+            }
+            System.out.println();
+        }
+        System.out.println(isAttackedField(king.getX(), king.getY(), team));
         return isAttackedField(king.getX(), king.getY(), team);
     }
 

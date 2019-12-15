@@ -70,13 +70,15 @@ public abstract class Item {
     public boolean move(int x, int y) {
         if (canMove(x, y)) {
             Item item = Game.getCurrentGame().getItem(x, y);
+            Game.getCurrentGame().deleteElem(x, y);
+            Game.getCurrentGame().moveItem(boardX, boardY, x, y);
             if (team != Game.getCurrentGame().getCurrentTeam()) {
+                imageView.toFront();
                 animate(x, y);
             }
             posX.set(intToPos(x));
             posY.set(intToPos(y));
-            Game.getCurrentGame().deleteElem(x, y);
-            Game.getCurrentGame().moveItem(boardX, boardY, x, y);
+
 
             if (Game.getCurrentGame().isShah(team)) {
                 posX.set(intToPos(boardX));
@@ -91,8 +93,24 @@ public abstract class Item {
                     NetWorkClient.getCurrentNetwork()
                             .move(boardX, boardY, x, y);
                 }
-                boardX = getX();
-                boardY = getY();
+
+                boardX = x;
+                boardY = y;
+
+                Game game = Game.getCurrentGame();
+                if (team == game.getCurrentTeam()) {
+                    if (game.isShah(game.getCurrentTeam() == Team.WHITE ? Team.BLACK : Team.WHITE)) {
+                        game.setMessage("Enemy`s move: Shah");
+                    } else {
+                        game.setMessage("Enemy`s move");
+                    }
+                } else {
+                    if (game.isShah(game.getCurrentTeam())) {
+                        game.setMessage("Your move: Shah");
+                    } else {
+                        game.setMessage("Your move");
+                    }
+                }
                 return true;
             }
 
