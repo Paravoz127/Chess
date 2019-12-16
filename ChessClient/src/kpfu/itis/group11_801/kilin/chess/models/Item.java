@@ -100,13 +100,13 @@ public abstract class Item {
                 Game game = Game.getCurrentGame();
                 if (team == game.getCurrentTeam()) {
                     Team enemyTeam = game.getCurrentTeam() == Team.WHITE ? Team.BLACK : Team.WHITE;
-                    if (game.isShah(enemyTeam)) {
+                    if (game.isDraw()) {
+                        game.setMessage("Draw");
+                        NetWorkClient.getCurrentNetwork().hasRoomProperty().setValue(false);
+                    } else if (game.isShah(enemyTeam)) {
                         if (game.isCheckMate(enemyTeam)) {
-                            try {
-                                game.setMessage("Your win: Checkmate");
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
+                            game.setMessage("Your win: Checkmate");
+                            NetWorkClient.getCurrentNetwork().hasRoomProperty().setValue(false);
                         } else {
                             game.setMessage("Enemy`s move: Check");
                         }
@@ -114,10 +114,17 @@ public abstract class Item {
                         game.setMessage("Enemy`s move");
                     }
                 } else {
-                    if (game.isShah(game.getCurrentTeam())) {
+                    if (game.isDraw()) {
+                        game.setMessage("Draw");
+                        try {
+                            NetWorkClient.getCurrentNetwork().gameEnd();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    } else if (game.isShah(game.getCurrentTeam())) {
                         if (game.isCheckMate(game.getCurrentTeam())) {
                             try {
-                                NetWorkClient.getCurrentNetwork().checkMate();
+                                NetWorkClient.getCurrentNetwork().gameEnd();
                                 game.setMessage("Your lose: Checkmate");
                             } catch (Exception e) {
                                 e.printStackTrace();

@@ -67,6 +67,9 @@ public class NetWorkThread extends Thread {
                         netWorkClient.quit();
                         Platform.runLater(() -> game.setMessage("You win: enemy gived up"));
                         break;
+                    case 100:
+                        Platform.runLater(() -> netWorkClient.gameIsGoingProperty().setValue(false));
+                        break;
                     case 3:
                         int x = reader.read();
                         int y = reader.read();

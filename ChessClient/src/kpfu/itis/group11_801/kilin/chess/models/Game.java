@@ -2,6 +2,9 @@ package kpfu.itis.group11_801.kilin.chess.models;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.image.ImageView;
+import kpfu.itis.group11_801.kilin.chess.controllers.NetWorkClient;
+import kpfu.itis.group11_801.kilin.chess.controllers.NetWorkThread;
+import sun.nio.ch.Net;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -236,6 +239,50 @@ public class Game {
                 Game.getCurrentGame().restoreElem(x, y, removedItem);
             }
             return res;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean isDraw() {
+        if (items.size() == 2) {
+            return true;
+        }
+
+        if (items.size() == 3) {
+            for (Item item : items) {
+                if (item instanceof Horse || item instanceof Elephant) {
+                    return true;
+                }
+            }
+        }
+
+        if (items.size() == 4) {
+            Team team = null;
+            for (Item item : items) {
+                if (item instanceof Horse || item instanceof Elephant) {
+                    if (team == null) {
+                        team = item.team;
+                    } else if (team != item.team) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        Team enemyTeam = currentTeam == Team.WHITE ? Team.BLACK : Team.WHITE;
+
+        Team team = NetWorkClient.yourMove.get() ? currentTeam : enemyTeam;
+
+        if (!isShah(team)) {
+            for (int i = 0; i < 7; i++) {
+                for (int j = 0; j < 7; j++) {
+                    if (tryAllMove(team, i, j)) {
+                        return false;
+                    }
+                }
+            }
+            return true;
         } else {
             return false;
         }

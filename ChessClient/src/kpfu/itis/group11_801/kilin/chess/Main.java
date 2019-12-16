@@ -26,7 +26,11 @@ public class Main extends Application {
     @Override
     public void stop() throws Exception {
         super.stop();
-        NetWorkClient.getCurrentNetwork().giveUp();
+        try {
+            NetWorkClient.getCurrentNetwork().giveUp();
+        } catch (Exception e) {
+            System.out.println("closed");
+        }
     }
 
     public static void main(String[] args) {

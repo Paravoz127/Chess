@@ -130,9 +130,9 @@ public class NetWorkClient {
         setGameIsGoing(false);
     }
 
-    public void checkMate() throws Exception{
-        writer.write(7);
+    public void gameEnd() throws Exception{
         hasRoom.setValue(false);
+        writer.write(7);
     }
 
     public void setHasRoom(boolean hasRoom) {
