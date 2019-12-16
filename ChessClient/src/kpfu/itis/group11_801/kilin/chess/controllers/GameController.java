@@ -15,6 +15,7 @@ import kpfu.itis.group11_801.kilin.chess.models.Team;
 import sun.net.NetworkClient;
 import sun.nio.ch.Net;
 
+import java.lang.reflect.GenericArrayType;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -24,6 +25,7 @@ public class GameController {
     private static Label messageLabel;
 
     @FXML private Button giveUpBtn;
+    @FXML private Button offerDrawBtn;
 
     @FXML private Pane table;
     @FXML private Label message;
@@ -73,8 +75,12 @@ public class GameController {
         stage.setHeight(880);
     }
 
-    public void giveUp() throws Exception{
+    public void giveUp() {
         NetWorkClient.getCurrentNetwork().giveUp();
+    }
+
+    public void draw() {
+        NetWorkClient.getCurrentNetwork().drawOffer();
     }
 
     @FXML
@@ -117,6 +123,8 @@ public class GameController {
 
         table.disableProperty().bind(NetWorkClient.yourMove.not());
         giveUpBtn.disableProperty().bind(NetWorkClient.getCurrentNetwork().gameIsGoingProperty().not());
+        offerDrawBtn.disableProperty().bind(NetWorkClient.getCurrentNetwork().gameIsGoingProperty().not());
+
         messageLabel = message;
     }
 

@@ -20,6 +20,8 @@ public class NetWorkThread extends Thread {
      * 4    =>  give up
      * 5    =>  random game
      * 6    =>  game started if you are white
+     * 8    => draw offer
+     * 9    => draw response 0 - yes. 1 - no
      * 100  => stop word
      */
     private OutputStream writer;
@@ -40,6 +42,25 @@ public class NetWorkThread extends Thread {
                 code = reader.read();
                 System.out.println(code);
                 switch (code) {
+                    case 9:
+                        if (reader.read() == 0) {
+                            netWorkClient.setGameIsGoing(false);
+                            NetWorkClient.setYourMove(false);
+                            netWorkClient.setHasRoom(false);
+                            Platform.runLater(() -> game.setMessage("Draw"));
+                        } else {
+                            Platform.runLater(game::notDrawMessage);
+                        }
+                        break;
+                    case 8:
+                        Platform.runLater(() -> {
+                            if (game.drawQuestion()) {
+                                netWorkClient.draw();
+                            } else {
+                                netWorkClient.notDraw();
+                            }
+                        });
+                        break;
                     case 7:
                         netWorkClient.quit();
                         break;

@@ -160,4 +160,34 @@ public class NetWorkClient {
     public BooleanProperty hasRoomProperty() {
         return hasRoom;
     }
+
+    public void drawOffer() {
+        try {
+            writer.write(8);
+        } catch (Exception e) {
+            disconnected();
+        }
+    }
+
+    public void draw() {
+        try {
+            writer.write(9);
+            writer.write(0);
+            setGameIsGoing(false);
+            yourMove.setValue(false);
+            hasRoom.setValue(false);
+            Game.getCurrentGame().setMessage("Draw");
+        } catch (Exception e) {
+            disconnected();
+        }
+    }
+
+    public void notDraw() {
+        try {
+            writer.write(9);
+            writer.write(1);
+        } catch (Exception e) {
+            disconnected();
+        }
+    }
 }

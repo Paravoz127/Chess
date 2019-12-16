@@ -64,4 +64,24 @@ public class Room {
         receiver.sendMessage(100);
         receiver.clearRoom();
     }
+
+    public void drawOffer(UserThread userThread) throws IOException{
+        UserThread receiver = userThread.equals(user1) ? user2 : user1;
+        receiver.sendMessage(8);
+    }
+
+    public void draw(UserThread userThread)  throws IOException {
+        UserThread receiver = userThread.equals(user1) ? user2 : user1;
+        receiver.sendMessage(9);
+        receiver.sendMessage(0);
+        receiver.clearRoom();
+        userThread.sendMessage(100);
+        userThread.clearRoom();
+    }
+
+    public void notDraw(UserThread userThread) throws IOException {
+        UserThread receiver = userThread.equals(user1) ? user2 : user1;
+        receiver.sendMessage(9);
+        receiver.sendMessage(1);
+    }
 }

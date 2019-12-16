@@ -1,14 +1,14 @@
 package kpfu.itis.group11_801.kilin.chess.models;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.ImageView;
 import kpfu.itis.group11_801.kilin.chess.controllers.NetWorkClient;
-import kpfu.itis.group11_801.kilin.chess.controllers.NetWorkThread;
-import sun.nio.ch.Net;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Map;
+import java.util.Optional;
 
 public class Game {
     private static Game currentGame;
@@ -301,6 +301,29 @@ public class Game {
     public void addItem(Item item) {
         table[item.getX()][item.getY()] = item;
         items.add(item);
+    }
+
+    public boolean drawQuestion() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Draw");
+        alert.setHeaderText("The enemy offers a draw");
+        alert.setContentText("Are you agree?");
+        Optional<ButtonType> res = alert.showAndWait();
+        System.out.println(res.get().getText());
+        if (res.get() == ButtonType.OK) {
+            Game.getCurrentGame().setMessage("Draw");
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void notDrawMessage() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Draw");
+        alert.setHeaderText("The enemy prefers to continue game");
+        alert.setContentText("The game continues");
+        alert.show();
     }
 
     public void setMessage(String s) {

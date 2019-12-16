@@ -15,6 +15,8 @@ public class UserThread extends Thread {
      * 4    =>  give up
      * 5    =>  random game
      * 7    =>  game end
+     * 8    =>  draw offer
+     * 9    =>  draw response 0 - yes. 1 - no
      */
     private Socket socket;
     private Room room;
@@ -35,6 +37,16 @@ public class UserThread extends Thread {
             while (code != -1) {
                 System.out.println(code);
                 switch(code) {
+                    case 9:
+                        if (inputStream.read() == 0) {
+                            room.draw(this);
+                        } else {
+                            room.notDraw(this);
+                        }
+                        break;
+                    case 8:
+                        room.drawOffer(this);
+                        break;
                     case 7:
                         try {
                             room.gameEnd(this);
