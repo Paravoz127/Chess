@@ -16,12 +16,12 @@
             <Font name="System Bold" size="37.0" />
          </font>
       </Label>
-      <Button fx:id="createBtn" layoutX="288.0" layoutY="260.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="304.0" text="create room">
+      <Button fx:id="createBtn" onMouseClicked="#createRoom" layoutX="288.0" layoutY="260.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="304.0" text="create room">
          <font>
             <Font size="23.0" />
          </font>
       </Button>
-      <Button fx:id="connectBtn" layoutX="288.0" layoutY="360.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="304.0" text="connect to room">
+      <Button fx:id="connectBtn" onMouseClicked="#connectToRoom" layoutX="288.0" layoutY="360.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="304.0" text="connect to room">
          <font>
             <Font size="23.0" />
          </font>

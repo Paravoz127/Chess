@@ -329,4 +329,5 @@ public class Game {
     public void setMessage(String s) {
         messageProperty().setValue(s);
     }
+
 }

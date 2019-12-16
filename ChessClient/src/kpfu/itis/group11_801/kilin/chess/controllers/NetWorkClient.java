@@ -3,6 +3,12 @@ package kpfu.itis.group11_801.kilin.chess.controllers;
 import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.stage.Stage;
+import kpfu.itis.group11_801.kilin.chess.Main;
 import kpfu.itis.group11_801.kilin.chess.models.Figure;
 import kpfu.itis.group11_801.kilin.chess.models.Game;
 import kpfu.itis.group11_801.kilin.chess.models.Team;
@@ -12,6 +18,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.Optional;
 
 public class NetWorkClient {
     private static NetWorkClient currentNetwork;
@@ -72,6 +79,57 @@ public class NetWorkClient {
             }
             System.out.println("new game");
             new NetWorkThread(socket).start();
+        } catch (Exception e) {
+            disconnected();
+        }
+    }
+
+    public void createGame() {
+        try {
+            writer.write(0);
+            int key = reader.read();
+            hasRoom.setValue(true);
+            new Game(Team.WHITE, GameController.getImages());
+            GameController.getMessageLabel().textProperty().bind(Game.getCurrentGame().messageProperty());
+            Game.getCurrentGame().setMessage("Waiting of second player: your code " + key);
+            System.out.println("new game");
+            new NetWorkThread(socket).start();
+        } catch (Exception e) {
+            disconnected();
+        }
+    }
+
+    public void roomNotExist() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("The room does not exist");
+        alert.setContentText("Connection error");
+        Stage stage = Main.getPrimaryStage();
+        try {
+            stage.setScene(new Scene(FXMLLoader.load(Main.class.getResource("views/Menu.fxml")), 880, 880));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        alert.show();
+
+    }
+
+    public void connectGame(int key) {
+        try {
+            writer.write(1);
+            writer.write(key);
+            if (reader.read() == 1) {
+                hasRoom.setValue(true);
+                new Game(Team.BLACK, GameController.getImages());
+                GameController.getMessageLabel().textProperty().bind(Game.getCurrentGame().messageProperty());
+                Game.getCurrentGame().setMessage("Enemy`s move");
+                setGameIsGoing(true);
+                System.out.println("new game");
+                new NetWorkThread(socket).start();
+            } else {
+                roomNotExist();
+            }
+
         } catch (Exception e) {
             disconnected();
         }
@@ -148,9 +206,19 @@ public class NetWorkClient {
         gameIsGoing.setValue(false);
         yourMove.setValue(false);
         hasRoom.setValue(false);
-        Game.getCurrentGame().setMessage("Connection reset");
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Connection reset");
+        alert.setHeaderText("Not connection to server");
+        alert.setContentText("Connection reset");
+        alert.show();
         hasConnection.setValue(false);
         currentNetwork = null;
+        Stage stage = Main.getPrimaryStage();
+        try {
+            stage.setScene(new Scene(FXMLLoader.load(Main.class.getResource("views/Menu.fxml")), 880, 880));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void setHasRoom(boolean hasRoom) {

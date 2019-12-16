@@ -171,12 +171,12 @@
          </ImageView>
       </children>
    </Pane>
-   <Button fx:id="menuBtn" layoutX="736.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#toMenu" prefHeight="46.0" prefWidth="130.0" text="To menu" />
-   <Button fx:id="giveUpBtn" layoutX="597.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#giveUp" prefHeight="46.0" prefWidth="130.0" text="Give up" />
-   <Label fx:id="message" layoutX="85.0" layoutY="26.0" prefHeight="38.0" prefWidth="319.0" text="Waiting of second player">
+   <Button fx:id="menuBtn" layoutX="751.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#toMenu" prefHeight="46.0" prefWidth="115.0" text="To menu" />
+   <Button fx:id="giveUpBtn" layoutX="628.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#giveUp" prefHeight="46.0" prefWidth="115.0" text="Give up" />
+   <Label fx:id="message" layoutX="42.0" layoutY="26.0" prefHeight="38.0" prefWidth="454.0" text="Waiting of second player">
       <font>
-         <Font size="26.0" />
+         <Font size="22.0" />
       </font>
    </Label>
-   <Button fx:id="offerDrawBtn" layoutX="459.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#draw" prefHeight="46.0" prefWidth="130.0" text="Offer a draw" />
+   <Button fx:id="offerDrawBtn" layoutX="506.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#draw" prefHeight="46.0" prefWidth="115.0" text="Offer a draw" />
 </Pane>

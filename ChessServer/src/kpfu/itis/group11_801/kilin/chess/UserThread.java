@@ -17,6 +17,7 @@ public class UserThread extends Thread {
      * 7    =>  game end
      * 8    =>  draw offer
      * 9    =>  draw response 0 - yes. 1 - no
+     * 10   =>  connection error
      */
     private Socket socket;
     private Room room;
@@ -37,6 +38,12 @@ public class UserThread extends Thread {
             while (code != -1) {
                 System.out.println(code);
                 switch(code) {
+                    case 0:
+                        room = NumberRoom.createRoom(this);
+                        break;
+                    case 1:
+                        room = NumberRoom.connect(this, inputStream.read());
+                        break;
                     case 9:
                         if (inputStream.read() == 0) {
                             room.draw(this);
@@ -76,6 +83,7 @@ public class UserThread extends Thread {
             }
         } catch (Exception e) {
             try {
+                e.printStackTrace();
                 room.giveUpIfDisconnected(this);
             } catch (Exception e2) {
                 e2.printStackTrace();

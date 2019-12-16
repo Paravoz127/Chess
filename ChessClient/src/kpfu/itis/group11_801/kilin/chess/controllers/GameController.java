@@ -4,6 +4,7 @@ package kpfu.itis.group11_801.kilin.chess.controllers;
 import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -69,10 +70,13 @@ public class GameController {
 
 
     public void toMenu() throws Exception {
-        NetWorkClient.getCurrentNetwork().giveUp();
+        try {
+            NetWorkClient.getCurrentNetwork().giveUp();
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
         Stage stage = Main.getPrimaryStage();
-        stage.getScene().setRoot(FXMLLoader.load(Main.class.getResource("views/Menu.fxml")));
-        stage.setHeight(880);
+        stage.setScene(new Scene(FXMLLoader.load(Main.class.getResource("views/Menu.fxml")), 880, 880));
     }
 
     public void giveUp() {

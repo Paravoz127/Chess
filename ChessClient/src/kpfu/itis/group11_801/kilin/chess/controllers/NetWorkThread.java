@@ -22,6 +22,7 @@ public class NetWorkThread extends Thread {
      * 6    =>  game started if you are white
      * 8    => draw offer
      * 9    => draw response 0 - yes. 1 - no
+     * 10   => connection error
      * 100  => stop word
      */
     private OutputStream writer;
