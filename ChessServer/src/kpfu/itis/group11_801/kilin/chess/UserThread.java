@@ -60,13 +60,16 @@ public class UserThread extends Thread {
                             e.printStackTrace();
                         }
                 }
-
                 code = inputStream.read();
             }
-
-
         } catch (Exception e) {
-            e.printStackTrace();
+            try {
+                room.giveUpIfDisconnected(this);
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+            clearRoom();
+            Server.users.remove(this);
         }
     }
 

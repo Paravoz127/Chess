@@ -48,10 +48,14 @@ public class Room {
     }
 
     public void giveUp(UserThread userThread) throws IOException{
-            UserThread receiver = userThread.equals(user1) ? user2 : user1;
+            giveUpIfDisconnected(userThread);
             userThread.sendMessage(100);
-            receiver.sendMessage(4);
-            receiver.clearRoom();
+    }
+
+    public void giveUpIfDisconnected (UserThread userThread) throws IOException{
+        UserThread receiver = userThread.equals(user1) ? user2 : user1;
+        receiver.sendMessage(4);
+        receiver.clearRoom();
     }
 
     public void gameEnd(UserThread userThread) throws IOException{

@@ -43,16 +43,14 @@ public abstract class Item {
                 if (event.getButton().equals(MouseButton.PRIMARY)) {
                     if (event.getX() >= OFFSET && event.getX() <= 8 * SIZE &&
                             event.getY() >= OFFSET && event.getY() <= 8 * SIZE) {
-                        posX.set(event.getX() - SIZE / 2);
-                        posY.set(event.getY() - SIZE / 2);
+                        posX.set(event.getX() - SIZE / 2.0);
+                        posY.set(event.getY() - SIZE / 2.0);
                     }
                 }
             });
             imageView.setOnMouseReleased(event -> {
                 int x = posToInt(posX);
                 int y = posToInt(posY);
-                int tmpX = boardX;
-                int tmpY = boardY;
                 move(x, y);
             });
         }
@@ -96,45 +94,8 @@ public abstract class Item {
 
                 boardX = x;
                 boardY = y;
-
-                Game game = Game.getCurrentGame();
-                if (team == game.getCurrentTeam()) {
-                    Team enemyTeam = game.getCurrentTeam() == Team.WHITE ? Team.BLACK : Team.WHITE;
-                    if (game.isDraw()) {
-                        game.setMessage("Draw");
-                        NetWorkClient.getCurrentNetwork().hasRoomProperty().setValue(false);
-                    } else if (game.isShah(enemyTeam)) {
-                        if (game.isCheckMate(enemyTeam)) {
-                            game.setMessage("Your win: Checkmate");
-                            NetWorkClient.getCurrentNetwork().hasRoomProperty().setValue(false);
-                        } else {
-                            game.setMessage("Enemy`s move: Check");
-                        }
-                    } else {
-                        game.setMessage("Enemy`s move");
-                    }
-                } else {
-                    if (game.isDraw()) {
-                        game.setMessage("Draw");
-                        try {
-                            NetWorkClient.getCurrentNetwork().gameEnd();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    } else if (game.isShah(game.getCurrentTeam())) {
-                        if (game.isCheckMate(game.getCurrentTeam())) {
-                            try {
-                                NetWorkClient.getCurrentNetwork().gameEnd();
-                                game.setMessage("Your lose: Checkmate");
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        } else {
-                            game.setMessage("Your move: Check");
-                        }
-                    } else {
-                        game.setMessage("Your move");
-                    }
+                if (!(this instanceof Pawn && (y == 0 || y == 7))) {
+                    check();
                 }
                 return true;
             }
@@ -145,6 +106,45 @@ public abstract class Item {
             return false;
         }
 
+    }
+
+    public void check() {
+        System.out.println("check");
+        Game game = Game.getCurrentGame();
+        if (team == game.getCurrentTeam()) {
+            Team enemyTeam = game.getCurrentTeam() == Team.WHITE ? Team.BLACK : Team.WHITE;
+            if (game.isDraw()) {
+                game.setMessage("Draw");
+                NetWorkClient.getCurrentNetwork().hasRoomProperty().setValue(false);
+            } else if (game.isShah(enemyTeam)) {
+                if (game.isCheckMate(enemyTeam)) {
+                    game.setMessage("Your win: Checkmate");
+                    NetWorkClient.getCurrentNetwork().hasRoomProperty().setValue(false);
+                } else {
+                    game.setMessage("Enemy`s move: Check");
+                }
+            } else {
+                game.setMessage("Enemy`s move");
+            }
+        } else {
+            if (game.isDraw()) {
+                game.setMessage("Draw");
+                try {
+                    NetWorkClient.getCurrentNetwork().gameEnd();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else if (game.isShah(game.getCurrentTeam())) {
+                if (game.isCheckMate(game.getCurrentTeam())) {
+                    NetWorkClient.getCurrentNetwork().gameEnd();
+                    game.setMessage("Your lose: Checkmate");
+                } else {
+                    game.setMessage("Your move: Check");
+                }
+            } else {
+                game.setMessage("Your move");
+            }
+        }
     }
 
     protected void animate(int x, int y) {

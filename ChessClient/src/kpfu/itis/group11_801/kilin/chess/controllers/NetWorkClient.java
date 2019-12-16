@@ -55,31 +55,30 @@ public class NetWorkClient {
         return currentNetwork;
     }
 
-    public void randomGame() throws IOException {
-        writer.write(5);
-        hasRoom.setValue(true);
-        int response = reader.read();
-        if (response == 0) {
-            new Game(Team.WHITE, GameController.getImages());
-        } else {
-            new Game(Team.BLACK, GameController.getImages());
-            setGameIsGoing(true);
+    public void randomGame() {
+        try {
+            writer.write(5);
+            hasRoom.setValue(true);
+            int response = reader.read();
+            if (response == 0) {
+                new Game(Team.WHITE, GameController.getImages());
+            } else {
+                new Game(Team.BLACK, GameController.getImages());
+                setGameIsGoing(true);
+            }
+            GameController.getMessageLabel().textProperty().bind(Game.getCurrentGame().messageProperty());
+            if (response == 1) {
+                Game.getCurrentGame().setMessage("Enemy`s move");
+            }
+            System.out.println("new game");
+            new NetWorkThread(socket).start();
+        } catch (Exception e) {
+            disconnected();
         }
-        GameController.getMessageLabel().textProperty().bind(Game.getCurrentGame().messageProperty());
-        if (response == 1) {
-            Game.getCurrentGame().setMessage("Enemy`s move");
-        }
-        System.out.println("new game");
-        new NetWorkThread(socket).start();
-    }
-
-    public void disconnect() throws IOException {
-        writer.write(-1);
     }
 
     public void move(int x1, int y1, int x2, int y2){
         try {
-            Game game = Game.getCurrentGame();
             writer.write(2);
             writer.write(x1);
             writer.write(y1);
@@ -91,26 +90,30 @@ public class NetWorkClient {
         }
     }
 
-    public void specialMove(int x, int y, Figure figure) throws IOException {
-        int figureCode = 0;
-        switch (figure.getName()) {
-            case "Horse":
-                figureCode = 3;
-                break;
-            case "Elephant":
-                figureCode = 2;
-                break;
-            case "Queen":
-                figureCode = 1;
-                break;
-            case "Castle":
-                figureCode = 4;
-                break;
+    public void specialMove(int x, int y, Figure figure) {
+        try {
+            int figureCode = 0;
+            switch (figure.getName()) {
+                case "Horse":
+                    figureCode = 3;
+                    break;
+                case "Elephant":
+                    figureCode = 2;
+                    break;
+                case "Queen":
+                    figureCode = 1;
+                    break;
+                case "Castle":
+                    figureCode = 4;
+                    break;
+            }
+            writer.write(3);
+            writer.write(x);
+            writer.write(y);
+            writer.write(figureCode);
+        } catch (Exception e) {
+            disconnected();
         }
-        writer.write(3);
-        writer.write(x);
-        writer.write(y);
-        writer.write(figureCode);
     }
 
     public void giveUp() {
@@ -130,9 +133,24 @@ public class NetWorkClient {
         setGameIsGoing(false);
     }
 
-    public void gameEnd() throws Exception{
+    public void gameEnd() {
+        try {
+            setGameIsGoing(false);
+            yourMove.setValue(false);
+            hasRoom.setValue(false);
+            writer.write(7);
+        } catch (Exception e) {
+            disconnected();
+        }
+    }
+
+    public void disconnected() {
+        gameIsGoing.setValue(false);
+        yourMove.setValue(false);
         hasRoom.setValue(false);
-        writer.write(7);
+        Game.getCurrentGame().setMessage("Connection reset");
+        hasConnection.setValue(false);
+        currentNetwork = null;
     }
 
     public void setHasRoom(boolean hasRoom) {

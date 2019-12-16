@@ -110,8 +110,9 @@ public class NetWorkThread extends Thread {
                 }
             }
             System.out.println("Closed");
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
+            NetWorkClient.getCurrentNetwork().disconnected();
         }
     }
 }

@@ -43,7 +43,7 @@ public class Pawn extends Item {
                         e.printStackTrace();
                     }
                 }
-
+                check();
             }
             return true;
         }
@@ -77,6 +77,7 @@ public class Pawn extends Item {
     public void changeType(Figure figure) {
         Game.getCurrentGame().deleteElem(getX(), getY());
         registryItem(figure);
+        check();
     }
 
     private void registryItem(Figure figure) {
