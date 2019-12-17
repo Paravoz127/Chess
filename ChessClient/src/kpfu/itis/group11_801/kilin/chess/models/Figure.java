@@ -34,6 +34,15 @@ public enum Figure {
 
     @Override
     public String toString() {
-        return name;
+        switch (name) {
+            case "Elephant":
+                return "Bishop";
+            case "Castle":
+                return "Rook";
+            case "Horse":
+                return "Knight";
+            default:
+                return name;
+        }
     }
 }
